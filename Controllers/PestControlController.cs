@@ -63,6 +63,7 @@ namespace ThaniyasFarmerAppAPI.Controllers
                     }
                 }
                 await _context.SaveChangesAsync();
+                var result = GetPestControl(pestControl.ID);
                 return new JsonResult(pestControl);
             }
             catch (Exception _ex)
@@ -78,15 +79,28 @@ namespace ThaniyasFarmerAppAPI.Controllers
         }
 
         [HttpGet("get-PestControl/{id}")]
-        public async Task<ActionResult<PestControl>> GetPestControl(int id)
+        public async Task<ActionResult<PestControlEditViewModel>> GetPestControl(int id)
         {
             var pestControl = await _context.PestControls.FindAsync(id);
+            PestControlEditViewModel pestControlEditViewModel = null;
 
-            if (pestControl == null)
+            if (pestControl != null)
             {
-                return NotFound();
+                var landDetails = _context.LandDetails.ToList();
+                var partLandDetails = _context.PartitionLandDetails.ToList();
+                pestControlEditViewModel = new PestControlEditViewModel();
+                pestControlEditViewModel.ID = pestControl.ID;
+                pestControlEditViewModel.LabourCost = pestControl.LabourCost;
+                pestControlEditViewModel.NameofthePestSide = pestControl.NameofthePestSide;
+                pestControlEditViewModel.Purpose = pestControl.Purpose;
+                pestControlEditViewModel.PestControlDate = pestControl.PestControlDate;
+                pestControlEditViewModel.Cost = pestControl.Cost;
+                pestControlEditViewModel.LandDetailName = landDetails;
+                pestControlEditViewModel.selectedLandDetailId = pestControl.LandDetailsId.ID;
+                pestControlEditViewModel.PartLandDetailName = partLandDetails;
+                pestControlEditViewModel.selectedPartLandDetailId = pestControl.PartitionLandDetailId.ID;
             }
-            return pestControl;
+            return pestControlEditViewModel;
         }
 
         [HttpDelete("delete-PestControl/{id}")]

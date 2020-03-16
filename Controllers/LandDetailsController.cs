@@ -24,12 +24,15 @@ namespace ThaniyasFarmerAppAPI.Controllers
         }
 
         [HttpGet("get-LandDetails")]
-        public async Task<ActionResult<IEnumerable<LandDetails>>> GetLandDetails()
+        public async Task<ActionResult<IEnumerable<LandDetail>>> GetLandDetails()
         
         {
             try
             {
-                return await _context.LandDetails.Where(d => d.Deleted == false).ToListAsync();
+                var result = await _context.LandDetails.Where(d => d.Deleted == false)
+                    .Include(p => p.PartitionLandDetails)
+                    .Include(s=> s.State).ToListAsync();
+                return result;
             }
             catch(Exception ex)
             {
@@ -38,21 +41,30 @@ namespace ThaniyasFarmerAppAPI.Controllers
         }
 
         [HttpGet("get-LandDetail/{id}")]
-        public async Task<ActionResult<LandDetails>> GetLandDetail(int id)
+        public async Task<ActionResult<LandDetailEditViewModel>> GetLandDetail(int id)
         {
             var LandDetail = await _context.LandDetails.FindAsync(id);
-
-            if (LandDetail == null)
+            LandDetailEditViewModel landDetailEditViewModel = null;
+            if (LandDetail != null)
             {
-                return NotFound();
+                var stateList = _context.StateLists.ToList();
+                landDetailEditViewModel = new LandDetailEditViewModel();
+                landDetailEditViewModel.City = LandDetail.City;
+                landDetailEditViewModel.Name = LandDetail.Name;
+                landDetailEditViewModel.ID = LandDetail.ID;
+                landDetailEditViewModel.PattaNumber = LandDetail.PattaNumber;               
+                landDetailEditViewModel.Village = LandDetail.Village;
+                landDetailEditViewModel.AreaSize = LandDetail.AreaSize;
+                landDetailEditViewModel.States = stateList;
+                landDetailEditViewModel.selectedStateListId = LandDetail.State.ID;
             }
 
-            return LandDetail;
+            return landDetailEditViewModel;
         }
 
 
         [HttpPut("update-LandDetail/{id}")]
-        public async Task<IActionResult> UpdateLandDetail(int id, LandDetails LandDetail)
+        public async Task<IActionResult> UpdateLandDetail(int id, LandDetail LandDetail)
         {
             if (id != LandDetail.ID)
             {
@@ -81,17 +93,47 @@ namespace ThaniyasFarmerAppAPI.Controllers
         }
 
         [HttpPost("add-LandDetail")]
-        public async Task<ActionResult<LandDetails>> AddLandDetail([FromBody]LandDetailViewModel input)
+        public async Task<ActionResult<LandDetail>> AddLandDetail([FromBody]LandDetailViewModel input)
         {
-            var landDetails = input.Adapt<LandDetails>();
-            _context.LandDetails.Add(landDetails);
-            await _context.SaveChangesAsync();
-            return new JsonResult(landDetails);
+            //var landDetails = input.Adapt<LandDetail>();
+            //_context.LandDetails.Add(landDetails);
+            //await _context.SaveChangesAsync();
+            //return new JsonResult(landDetails);
             // return CreatedAtAction("GetLandDetail", new { id = LandDetail.ID }, LandDetail);
+
+            try
+            {
+                LandDetail landDetails = null;
+                if (input != null)
+                {
+                    landDetails = input.Adapt<LandDetail>();
+                    var stateList = _context.StateLists.Where(s => s.ID == input.StateId).FirstOrDefault();
+                    if (stateList == null) return new JsonResult(new { ErrorMessage = "The given state id not found." });
+
+                    //Setting the state List value to the Land detail object
+                    landDetails.State = stateList;
+                    if (input.ID <= 0) 
+                    {
+                        _context.LandDetails.Add(landDetails);
+                    }
+                    else
+                    { //Update
+                        _context.LandDetails.Update(landDetails);
+                    }
+                }
+                await _context.SaveChangesAsync();
+                var result = GetLandDetail(landDetails.ID);
+                return new JsonResult(landDetails);
+            }
+            catch (Exception _ex)
+            {
+                return new JsonResult(new { ErrorMessage = _ex.Message });
+            }
+
         }
         
         [HttpDelete("delete-LandDetail/{id}")]
-        public async Task<ActionResult<LandDetails>> DeleteLandDetail(int id)   
+        public async Task<ActionResult<LandDetail>> DeleteLandDetail(int id)   
         {
             var LandDetail = await _context.LandDetails.FindAsync(id);
             if (LandDetail == null)

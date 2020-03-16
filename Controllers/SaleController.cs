@@ -57,6 +57,7 @@ namespace ThaniyasFarmerAppAPI.Controllers
                     }
                 }
                 await _context.SaveChangesAsync();
+                var result = GetSale(sale.ID);
                 return new JsonResult(sale);
             }
             catch (Exception _ex)
@@ -72,15 +73,28 @@ namespace ThaniyasFarmerAppAPI.Controllers
         }
 
         [HttpGet("get-Sale/{id}")]
-        public async Task<ActionResult<Sale>> GetSale(int id)
+        public async Task<ActionResult<SalesEditViewModel>> GetSale(int id)
         {
             var sale = await _context.Sales.FindAsync(id);
+            SalesEditViewModel salesEditViewModel = null;
 
-            if (sale == null)
+            if (sale != null)
             {
-                return NotFound();
+                var landDetails = _context.LandDetails.ToList();
+                var partLandDetails = _context.PartitionLandDetails.ToList();
+                salesEditViewModel = new SalesEditViewModel();
+                salesEditViewModel.BuyerMobileNumber = sale.BuyerMobileNumber;
+                salesEditViewModel.BuyerName = sale.BuyerName;
+                salesEditViewModel.SaleDate = sale.SaleDate;
+                salesEditViewModel.ID = sale.ID;
+                salesEditViewModel.Price = sale.Price;
+                salesEditViewModel.Quantity = sale.Quantity;
+                salesEditViewModel.LandDetailName = landDetails;
+                salesEditViewModel.selectedLandDetailId = sale.LandDetailsId.ID;
+                salesEditViewModel.PartLandDetailName = partLandDetails;
+                salesEditViewModel.selectedPartLandDetailId = sale.PartitionLandDetailId.ID;
             }
-            return sale;
+            return salesEditViewModel;
         }
 
         [HttpDelete("delete-Sale/{id}")]

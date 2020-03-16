@@ -11,10 +11,9 @@ namespace ThaniyasFarmerAppAPI.Models.ViewModels
         [Required]
         [MaxLength(75)]
         public string Name { get; set; }
+        public int ID { get; set; }
 
-        [Required]
-        [MaxLength(75)]
-        public string State { get; set; }
+        public int StateId { get; set; }
 
         [Required]
         [MaxLength(100)]

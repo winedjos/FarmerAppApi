@@ -15,7 +15,7 @@ namespace ThaniyasFarmerAppAPI.Repository
 
         //entities
         public DbSet<User> Users { get; set; }
-        public DbSet<LandDetails> LandDetails { get; set; }
+        public DbSet<LandDetail> LandDetails { get; set; }
         public DbSet<PartitionLandDetail> PartitionLandDetails { get; set; }
         public DbSet<Harvestings> Harvestings { get; set; }
         public DbSet<PestControl> PestControls { get; set; }
@@ -29,10 +29,19 @@ namespace ThaniyasFarmerAppAPI.Repository
         public DbSet<WebPages> WebPages { get; set; }
         public DbSet<RolePageAccess> RolePageAccesses { get; set; }
         public DbSet<StateList> StateLists { get; set; }
+        public DbSet<Registration> Registrations { get; set; }
+        public DbSet<Login> Logins { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            
+            //modelBuilder.Entity<LandDetail>()
+            //    .HasMany(e => e.PartitionLandDetails)
+            //    .WithOne(c => c.LandDetail);
+
+            //modelBuilder.Entity<PartitionLandDetail>()
+            //    .HasOne(e => e.LandDetail)
+            //    .WithMany(c => c.PartitionLandDetails);
+
             modelBuilder.Entity<User>().HasData(
                 new User
                 {

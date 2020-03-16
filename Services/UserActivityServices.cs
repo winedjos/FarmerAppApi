@@ -85,7 +85,7 @@ namespace ThaniyasFarmerAppAPI.Services
                     }
                     if (controller.ToLower().Contains("landdetail"))
                     {
-                        var resultData = Newtonsoft.Json.JsonConvert.DeserializeObject<LandDetails>(resultString);
+                        var resultData = Newtonsoft.Json.JsonConvert.DeserializeObject<LandDetail>(resultString);
                         
                         if (resultData != null)
                         {

@@ -8,7 +8,7 @@ namespace ThaniyasFarmerAppAPI.Models.ViewModels
     public class WeedRemoveEditViewModel
     {
         public int selectedLandDetailId { get; set; }
-        public List<LandDetails> LandDetailName { get; set; }
+        public List<LandDetail> LandDetailName { get; set; }
         public int selectedPartLandDetailId { get; set; }
         public List<PartitionLandDetail> PartLandDetailName { get; set; }
         public int ID { get; set; }

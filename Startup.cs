@@ -33,6 +33,10 @@ namespace ThaniyasFarmerAppAPI
             services.AddDbContext<BaseDbContext>(opts => opts.UseSqlServer(Configuration["ConnectionString:ThaniyasFarmerAppDB"]));
             services.AddMvc()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc()
+                    .AddJsonOptions(
+                        options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+                    );
             services.AddCors(options => { options.AddPolicy("CorsPolicy", builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader().AllowCredentials()); });
             services.AddSingleton(Configuration);
            // services.AddAuthenticationAndAuthorization();

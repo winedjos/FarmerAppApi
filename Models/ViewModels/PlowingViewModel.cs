@@ -11,12 +11,11 @@ namespace ThaniyasFarmerAppAPI.Models.ViewModels
         public int PartitionLandDetailsId { get; set; }
         public int LandDetailsId { get; set; }
         public int ID { get; set; }
-        public string Date { get; set; }
+        public DateTime PlowingDate { get; set; }
         [MaxLength(50)]
         public string TypeofPlowing { get; set; }
         [MaxLength(50)]
         public string PlowingExp { get; set; }
-        [MaxLength(50)]
         public bool Deleted { get; set; }
     }
 }

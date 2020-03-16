@@ -10,7 +10,7 @@ namespace ThaniyasFarmerAppAPI.Models
     public class Seeding : Base
     {
         [ForeignKey("LandDetailIDFK")]
-        public LandDetails LandDetailsId { get; set; }
+        public LandDetail LandDetailsId { get; set; }
 
         [ForeignKey("PartitionLandDetailIDFK")]
         public PartitionLandDetail PartitionLandDetailId { get; set; }

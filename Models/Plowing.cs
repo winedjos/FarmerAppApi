@@ -11,11 +11,11 @@ namespace ThaniyasFarmerAppAPI.Models
     {
 
         [ForeignKey("LandDetailIDFK")]
-        public LandDetails LandDetailsId { get; set; }
+        public LandDetail LandDetailsId { get; set; }
 
         [ForeignKey("PartitionLandDetailIDFK")]
         public PartitionLandDetail PartitionLandDetailId { get; set; }
-        public string Date { get; set; }
+        public DateTime PlowingDate { get; set; }
         [MaxLength(50)]
         public string TypeofPlowing { get; set; }
         [MaxLength(50)]

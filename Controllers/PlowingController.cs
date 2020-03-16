@@ -63,6 +63,7 @@ namespace ThaniyasFarmerAppAPI.Controllers
                     }
                 }
                 await _context.SaveChangesAsync();
+                var result = GetPlowing(plowing.ID);
                 return new JsonResult(plowing);
             }
             catch (Exception _ex)
@@ -78,15 +79,26 @@ namespace ThaniyasFarmerAppAPI.Controllers
         }
 
         [HttpGet("get-Plowing/{id}")]
-        public async Task<ActionResult<Plowing>> GetPlowing(int id)
+        public async Task<ActionResult<PlowingEditViewModel>> GetPlowing(int id)
         {
             var plowing = await _context.Plowings.FindAsync(id);
+            PlowingEditViewModel plowingEditViewModel = null;
 
-            if (plowing == null)
+            if (plowing != null)
             {
-                return NotFound();
+                var landDetails = _context.LandDetails.ToList();
+                var partLandDetails = _context.PartitionLandDetails.ToList();
+                plowingEditViewModel = new PlowingEditViewModel();
+                plowingEditViewModel.ID = plowing.ID;
+                plowingEditViewModel.PlowingExp = plowing.PlowingExp;
+                plowingEditViewModel.PlowingDate = plowing.PlowingDate;
+                plowingEditViewModel.TypeofPlowing = plowing.TypeofPlowing;
+                plowingEditViewModel.LandDetailName = landDetails;
+                plowingEditViewModel.selectedLandDetailId = plowing.LandDetailsId.ID;
+                plowingEditViewModel.PartLandDetailName = partLandDetails;
+                plowingEditViewModel.selectedPartLandDetailId = plowing.PartitionLandDetailId.ID;
             }
-            return plowing;
+            return plowingEditViewModel;
         }
 
         [HttpDelete("delete-Plowing/{id}")]

@@ -11,7 +11,7 @@ namespace ThaniyasFarmerAppAPI.Models.ViewModels
         public int PartitionLandDetailsId { get; set; }
         public int LandDetailsId { get; set; }
         public int ID { get; set; }
-        public string Date { get; set; }
+        public string PestControlDate { get; set; }
         [MaxLength(50)]
         public string NameofthePestSide { get; set; }
         [MaxLength(50)]
