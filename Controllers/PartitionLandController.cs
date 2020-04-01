@@ -81,18 +81,21 @@ namespace ThaniyasFarmerAppAPI.Controllers
         public async Task<ActionResult<IEnumerable<PartitionLandViewModel>>> GetPartLandActivity()
         {
 
-            var partLandList = await _context.PartitionLandDetails.ToListAsync();
+            var partLandList = await _context.PartitionLandDetails.Where(d => d.Deleted == false).Include(l => l.LandDetail).ToListAsync();
             var returnpartLandList = new List<PartitionLandViewModel>();
             foreach (var obj in partLandList)
             {
+                var landDetails = _context.LandDetails.ToList();
                 returnpartLandList.Add(
-                    new PartitionLandViewModel
-                    {
-                        AreaSize = obj.AreaSize,
-                        LandDirection = obj.LandDirection,
-                        ID = obj.ID,
-                       // LandDetailsId = "",
-                    });
+
+                new PartitionLandViewModel
+                {
+                    AreaSize = obj.AreaSize,
+                    LandDirection = obj.LandDirection,
+                    LandDetailsId = obj.LandDetail.ID,
+                    ID = obj.ID,
+                    // LandDetailsId = "",
+                }); ;
             }
             return returnpartLandList;
 

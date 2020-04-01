@@ -97,7 +97,7 @@ namespace ThaniyasFarmerAppAPI
                    name: "default",
                    template: "{controller}/{action=Index}/{id?}");
             });
-            //app.UseAuthentication();            
+            app.UseAuthentication();            
             app.UseMvc();
 
             //app.UseCors();

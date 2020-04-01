@@ -16,26 +16,18 @@ namespace ThaniyasFarmerAppAPI.Models
         [MinLength(8)]
         [MaxLength(30)]
         public string Password { get; set; }
-
-        [MaxLength(30)]
-        public string FirstName { get; set; }
-
-        [MaxLength(30)]
-        public string LastName { get; set; }
-
+       
         [Required]
         [MaxLength(100)]
         public string Email { get; set; }
 
-        public int RoleID { get; set; }
+       // public int RoleID { get; set; }
         public bool IsFirstTimeLogin { get; set; }
-        public bool AcceptedTermsAndConditions { get; set; }
-        public string ResetPasswordToken { get; set; }
+      
 
         public User()
         {
-            IsFirstTimeLogin = true;
-            AcceptedTermsAndConditions = false;
+            IsFirstTimeLogin = true;         
             Deleted = false;
             DateAdded = DateTime.UtcNow;
             DateModified = DateTime.UtcNow;

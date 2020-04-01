@@ -51,8 +51,8 @@ namespace ThaniyasFarmerAppAPI.Repository
                     Password = Helpers.StringCipher.Encrypt("Password*123"),
                     DateAdded = DateTime.UtcNow,
                     DateModified=DateTime.UtcNow,
-                    RoleID = 1,
-                    AcceptedTermsAndConditions = true,
+                    //RoleID = 1,
+                   // AcceptedTermsAndConditions = true,
                     IsFirstTimeLogin = true
                 });
             modelBuilder.Entity<Configuration>().HasData(

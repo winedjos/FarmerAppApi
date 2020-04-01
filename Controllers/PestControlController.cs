@@ -18,6 +18,7 @@ namespace ThaniyasFarmerAppAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [ActionFillter]
     public class PestControlController : ControllerBase
     {
 

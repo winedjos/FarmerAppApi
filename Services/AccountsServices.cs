@@ -34,8 +34,8 @@ namespace ThaniyasFarmerAppAPI.Services
                 if (user!=null)
                 {
                     returnResults.userDetail = user.Adapt<UserViewModel>();
-                    var pageAccess = _context.RolePageAccesses.Where(x => x.RolesID == user.RoleID).Select(x=>x.Pages).ToList();
-                    returnResults.userDetail.WebPages = pageAccess;
+                    //var pageAccess = _context.RolePageAccesses.Where(x => x.RolesID == user.RoleID).Select(x=>x.Pages).ToList();
+                    //returnResults.userDetail.WebPages = pageAccess;
                        result = new Status { StatusCode = 200, StatusDisplay = "Logged in Successfully", StatusValue = true };
                 }
                 else
