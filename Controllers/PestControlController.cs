@@ -2,14 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ThaniyasFarmerAppAPI.Models;
 using ThaniyasFarmerAppAPI.Models.ViewModels;
 using ThaniyasFarmerAppAPI.Repository;
-using ThaniyasFarmerAppAPI.Filters;
-using Microsoft.AspNetCore.Cors;
 using Mapster;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -28,8 +25,15 @@ namespace ThaniyasFarmerAppAPI.Controllers
             _context = context;
         }
 
-        [HttpPost("add-PestControl")]
-        public async Task<ActionResult<PestControl>> AddPestControl(PestControlViewModel input)
+        [HttpGet("pestControl-list")]
+        public async Task<ActionResult<IEnumerable<PestControl>>> GetPestControlActivity()
+        {
+            return await _context.PestControls.ToListAsync();
+        }
+
+        [HttpPost]
+        [Route("add-PestControl")]
+        public async Task<ActionResult<PestControl>> AddPestControl([FromBody]PestControlViewModel input)
         {
             //_context.PestControls.Add(pestControl);
             //await _context.SaveChangesAsync();
@@ -70,13 +74,7 @@ namespace ThaniyasFarmerAppAPI.Controllers
             {
                 return new JsonResult(new { ErrorMessage = _ex.Message });
             }
-        }
-
-        [HttpGet("pestControl-list")]
-        public async Task<ActionResult<IEnumerable<PestControl>>> GetPestControlActivity()
-        {
-            return await _context.PestControls.ToListAsync();
-        }
+        }        
 
         [HttpGet("get-PestControl/{id}")]
         public async Task<ActionResult<PestControlEditViewModel>> GetPestControl(int id)

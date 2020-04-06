@@ -28,7 +28,7 @@ namespace ThaniyasFarmerAppAPI.Controllers
         }
 
         [HttpPost("add-Seed")]
-        public async Task<ActionResult<Seeding>> AddSeeding(SeedingViewModel input)
+        public async Task<ActionResult<Seeding>> AddSeeding([FromBody]SeedingViewModel input)
         {
             //_context.Seedings.Add(Seeding);
             //await _context.SaveChangesAsync();

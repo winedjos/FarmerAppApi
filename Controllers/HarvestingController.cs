@@ -29,12 +29,9 @@ namespace ThaniyasFarmerAppAPI.Controllers
         }
 
         [HttpPost("add-Harvestings")]
-        public async Task<ActionResult<HarvestingEditViewModel>> AddHarvestings(HarvestingViewModel input)
+        public async Task<ActionResult<HarvestingEditViewModel>> AddHarvestings([FromBody]HarvestingViewModel input)
         {
-            //_context.Harvestings.Add(Harvesting);
-            //await _context.SaveChangesAsync();
-
-            //return new JsonResult(Harvesting); // CreatedAtAction("GetHarvesting", new { id = Harvesting.ID }, Harvesting);
+            
 
             try
             {

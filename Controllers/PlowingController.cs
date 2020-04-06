@@ -30,7 +30,7 @@ namespace ThaniyasFarmerAppAPI.Controllers
         }
 
         [HttpPost("add-Plowing")]
-        public async Task<ActionResult<Plowing>> AddPlowing(PlowingViewModel input)
+        public async Task<ActionResult<Plowing>> AddPlowing([FromBody]PlowingViewModel input)
         {
             //_context.Plowings.Add(plowing);
             //await _context.SaveChangesAsync();

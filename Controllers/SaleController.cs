@@ -28,7 +28,7 @@ namespace ThaniyasFarmerAppAPI.Controllers
         }
 
         [HttpPost("add-Sale")]
-        public async Task<ActionResult<Sale>> AddSale(SalesViewModel input)
+        public async Task<ActionResult<Sale>> AddSale([FromBody]SalesViewModel input)
         {
             try
             {

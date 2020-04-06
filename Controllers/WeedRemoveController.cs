@@ -29,7 +29,7 @@ namespace ThaniyasFarmerAppAPI.Controllers
         }
 
         [HttpPost("add-WeedRemove")]
-        public async Task<ActionResult<WeedRemove>> AddWeedRemove(WeedRemoveViewModel input)
+        public async Task<ActionResult<WeedRemove>> AddWeedRemove([FromBody]WeedRemoveViewModel input)
         {
             //var weedRemove = input.Adapt<WeedRemove>();
             //_context.WeedRemove.Add(weedRemove);
