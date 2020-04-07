@@ -10,7 +10,7 @@ namespace ThaniyasFarmerAppAPI.Models.ViewModels
     {
         // public int LandDetailsId { get; set; }
         public int PartitionLandDetailsId { get; set; }
-        public int LandDetailsId { get; set; }
+        public int UserId { get; set; }
         public int ID { get; set; }
         [MaxLength(50)]
         public string Quantity { get; set; }

@@ -16,6 +16,7 @@ namespace ThaniyasFarmerAppAPI.Models.ViewModels
         public int ID { get; set; }
         public string AreaSize { get; set; }
         public bool Deleted { get; set; }
-       
+        public int UserId { get; set; }
+
     }
 }

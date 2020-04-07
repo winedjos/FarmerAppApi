@@ -9,7 +9,6 @@ namespace ThaniyasFarmerAppAPI.Models.ViewModels
     public class PestControlViewModel
     {
         public int PartitionLandDetailsId { get; set; }
-        public int LandDetailsId { get; set; }
         public int ID { get; set; }
         public string PestControlDate { get; set; }
         [MaxLength(50)]
@@ -21,5 +20,6 @@ namespace ThaniyasFarmerAppAPI.Models.ViewModels
         [MaxLength(50)]
         public string LabourCost { get; set; }
         public bool Deleted { get; set; }
+        public int UserId { get; set; }
     }
 }

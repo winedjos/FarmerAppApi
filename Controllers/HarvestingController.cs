@@ -30,8 +30,7 @@ namespace ThaniyasFarmerAppAPI.Controllers
 
         [HttpPost("add-Harvestings")]
         public async Task<ActionResult<HarvestingEditViewModel>> AddHarvestings([FromBody]HarvestingViewModel input)
-        {
-            
+        {            
 
             try
             {
@@ -39,15 +38,11 @@ namespace ThaniyasFarmerAppAPI.Controllers
                 if (input != null)
                 {
                     harvest = input.Adapt<Harvestings>();
-                    //Getting Land detail
-                    var landDetail = _context.LandDetails.Where(s => s.ID == input.LandDetailsId).FirstOrDefault();
-                    if (landDetail == null) return new JsonResult(new { ErrorMessage = "The given land details id not found." });
+                    
                     var PartLandDetails = _context.PartitionLandDetails.Where(p => p.ID == input.PartitionLandDetailsId).FirstOrDefault();
                     if (PartLandDetails == null) return new JsonResult(new { ErrorMessage = "The given land details id not found." });
 
-                    //Setting the land detail value to the Partition Land detail object
-                    harvest.LandDetailsId = landDetail;
-                    harvest.PartitionLandDetailId = PartLandDetails;
+                    harvest.PartitionLandDetail = PartLandDetails;
 
                     //Deciding whether the action is Add or Update
                     if (input.ID <= 0) //Add
@@ -74,9 +69,10 @@ namespace ThaniyasFarmerAppAPI.Controllers
         }
 
         [HttpGet("harvesting-list")]
-        public async Task<ActionResult<IEnumerable<Harvestings>>> GetHarvestActivity()
+        public async Task<ActionResult<IEnumerable<Harvestings>>> GetHarvestActivity(int userId)
         {
-            return await _context.Harvestings.ToListAsync();
+            var list= await _context.Harvestings.ToListAsync();
+            return list.Where(x => x.UserId == userId).ToList();
         }
 
         [HttpGet("get-Harvesting/{id}")]
@@ -95,10 +91,6 @@ namespace ThaniyasFarmerAppAPI.Controllers
                 harvestingEditViewModel.NOofLabours = Harvest.NOofLabours;
                 harvestingEditViewModel.Cost = Harvest.Cost;
                 harvestingEditViewModel.Date = Harvest.Date;
-                harvestingEditViewModel.LandDetailName = landDetails;
-                harvestingEditViewModel.selectedLandDetailId = Harvest.LandDetailsId.ID;
-                harvestingEditViewModel.PartLandDetailName = partLandDetails;
-                harvestingEditViewModel.selectedPartLandDetailId = Harvest.PartitionLandDetailId.ID;
             }
             return harvestingEditViewModel;
         }

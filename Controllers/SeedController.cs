@@ -41,16 +41,7 @@ namespace ThaniyasFarmerAppAPI.Controllers
                 if (input != null)
                 {
                     seeding = input.Adapt<Seeding>();
-                    //Getting Land detail
-                    var landDetail = _context.LandDetails.Where(l => l.ID == input.LandDetailsId).FirstOrDefault();
-                    if (landDetail == null) return new JsonResult(new { ErrorMessage = "The given land details id not found." });
-                    var PartLandDetails = _context.PartitionLandDetails.Where(p => p.ID == input.PartitionLandDetailsId).FirstOrDefault();
-                    if (PartLandDetails == null) return new JsonResult(new { ErrorMessage = "The given land details id not found." });
-
-                    //Setting the land detail value to the Partition Land detail object
-                    seeding.LandDetailsId = landDetail;
-                    seeding.PartitionLandDetailId = PartLandDetails;
-
+                    
                     //Deciding whether the action is Add or Update
                     if (input.ID <= 0) //Add
                     {
@@ -73,9 +64,10 @@ namespace ThaniyasFarmerAppAPI.Controllers
         }
 
         [HttpGet("seed-list")]
-        public async Task<ActionResult<IEnumerable<Seeding>>> GetSeedActivity()
+        public async Task<ActionResult<IEnumerable<Seeding>>> GetSeedActivity(int userId)
         {
-            return await _context.Seedings.ToListAsync();
+            var list= await _context.Seedings.ToListAsync();
+            return list.Where(x => x.UserId == userId).ToList();
         }
 
         [HttpGet("get-Seed/{id}")]
@@ -95,9 +87,7 @@ namespace ThaniyasFarmerAppAPI.Controllers
                 seedEditViewModel.SeedCost = Seed.SeedCost;
                 seedEditViewModel.SeedName = Seed.SeedName;
                 seedEditViewModel.LandDetailName = landDetails;
-                seedEditViewModel.selectedLandDetailId = Seed.LandDetailsId.ID;
                 seedEditViewModel.PartLandDetailName = partLandDetails;
-                seedEditViewModel.selectedPartLandDetailId = Seed.PartitionLandDetailId.ID;
             }
 
             return seedEditViewModel;

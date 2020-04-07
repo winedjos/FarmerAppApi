@@ -32,18 +32,7 @@ namespace ThaniyasFarmerAppAPI.Controllers
         [HttpPost("add-PartitionLand")]
         public async Task<ActionResult<PartitionLandEditViewModel>> AddpartitionLand([FromBody]PartitionLandViewModel input)
         {
-            //try {
-            //    var partitionLandDetail = input.Adapt<PartitionLandDetail>();
-            //    _context.PartitionLandDetails.Add(partitionLandDetail);
-            //    await _context.SaveChangesAsync();
-            //    return new JsonResult(partitionLandDetail);
-            //}
-            //catch (Exception _ex)
-            //{
-            //    return new JsonResult(new { ErrorMessage = _ex.Message });
-            //}
-
-
+            
             try
             {
                 PartitionLandDetail partitionLandDetail = null;
@@ -78,23 +67,11 @@ namespace ThaniyasFarmerAppAPI.Controllers
         }
 
         [HttpGet("PartitionLand-list")]
-        public async Task<ActionResult<IEnumerable<PartitionLandViewModel>>> GetPartLandActivity()
+        public async Task<ActionResult<List<PartitionLandDetail>>> GetPartLandActivity(int userId)
         {
 
             var partLandList = await _context.PartitionLandDetails.ToListAsync();
-            var returnpartLandList = new List<PartitionLandViewModel>();
-            foreach (var obj in partLandList)
-            {
-                returnpartLandList.Add(
-                    new PartitionLandViewModel
-                    {
-                        AreaSize = obj.AreaSize,
-                        LandDirection = obj.LandDirection,
-                        ID = obj.ID,
-                       // LandDetailsId = "",
-                    });
-            }
-            return returnpartLandList;
+            return partLandList.Where(x => x.UserId == userId).ToList();
 
         }
         [HttpGet("get-PartitionLand/{id}")]

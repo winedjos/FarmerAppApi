@@ -26,9 +26,10 @@ namespace ThaniyasFarmerAppAPI.Controllers
         }
 
         [HttpGet("pestControl-list")]
-        public async Task<ActionResult<IEnumerable<PestControl>>> GetPestControlActivity()
+        public async Task<ActionResult<IEnumerable<PestControl>>> GetPestControlActivity(int userId)
         {
-            return await _context.PestControls.ToListAsync();
+            var list= await _context.PestControls.ToListAsync();
+            return list.Where(x => x.UserId == userId).ToList();
         }
 
         [HttpPost]
@@ -46,16 +47,7 @@ namespace ThaniyasFarmerAppAPI.Controllers
                 if (input != null)
                 {
                     pestControl = input.Adapt<PestControl>();
-                    //Getting Land detail
-                    var landDetail = _context.LandDetails.Where(s => s.ID == input.LandDetailsId).FirstOrDefault();
-                    if (landDetail == null) return new JsonResult(new { ErrorMessage = "The given land details id not found." });
-                    var PartLandDetails = _context.PartitionLandDetails.Where(p => p.ID == input.PartitionLandDetailsId).FirstOrDefault();
-                    if (PartLandDetails == null) return new JsonResult(new { ErrorMessage = "The given land details id not found." });
-
-                    //Setting the land detail value to the Partition Land detail object
-                    pestControl.LandDetailsId = landDetail;
-                    pestControl.PartitionLandDetailId = PartLandDetails;
-
+                    
                     //Deciding whether the action is Add or Update
                     if (input.ID <= 0) //Add
                     {
@@ -94,9 +86,7 @@ namespace ThaniyasFarmerAppAPI.Controllers
                 pestControlEditViewModel.PestControlDate = pestControl.PestControlDate;
                 pestControlEditViewModel.Cost = pestControl.Cost;
                 pestControlEditViewModel.LandDetailName = landDetails;
-                pestControlEditViewModel.selectedLandDetailId = pestControl.LandDetailsId.ID;
                 pestControlEditViewModel.PartLandDetailName = partLandDetails;
-                pestControlEditViewModel.selectedPartLandDetailId = pestControl.PartitionLandDetailId.ID;
             }
             return pestControlEditViewModel;
         }
