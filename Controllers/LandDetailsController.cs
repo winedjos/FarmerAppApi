@@ -24,15 +24,14 @@ namespace ThaniyasFarmerAppAPI.Controllers
         }
 
         [HttpGet("get-LandDetails")]
-        public async Task<ActionResult<IEnumerable<LandDetail>>> GetLandDetails()
-        
+        public async Task<ActionResult<IEnumerable<LandDetail>>> GetLandDetails(int userId)        
         {
             try
             {
                 var result = await _context.LandDetails.Where(d => d.Deleted == false)
                     .Include(p => p.PartitionLandDetails)
                     .Include(s=> s.State).ToListAsync();
-                return result;
+                return result.Where(x => x.UserId == userId).ToList();
             }
             catch(Exception ex)
             {
@@ -95,12 +94,7 @@ namespace ThaniyasFarmerAppAPI.Controllers
         [HttpPost("add-LandDetail")]
         public async Task<ActionResult<LandDetail>> AddLandDetail([FromBody]LandDetailViewModel input)
         {
-            //var landDetails = input.Adapt<LandDetail>();
-            //_context.LandDetails.Add(landDetails);
-            //await _context.SaveChangesAsync();
-            //return new JsonResult(landDetails);
-            // return CreatedAtAction("GetLandDetail", new { id = LandDetail.ID }, LandDetail);
-
+            
             try
             {
                 LandDetail landDetails = null;

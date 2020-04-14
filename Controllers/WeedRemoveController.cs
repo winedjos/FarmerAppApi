@@ -29,7 +29,7 @@ namespace ThaniyasFarmerAppAPI.Controllers
         }
 
         [HttpPost("add-WeedRemove")]
-        public async Task<ActionResult<WeedRemove>> AddWeedRemove(WeedRemoveViewModel input)
+        public async Task<ActionResult<WeedRemove>> AddWeedRemove([FromBody]WeedRemoveViewModel input)
         {
             //var weedRemove = input.Adapt<WeedRemove>();
             //_context.WeedRemove.Add(weedRemove);
@@ -41,16 +41,7 @@ namespace ThaniyasFarmerAppAPI.Controllers
                 WeedRemove weedRemove = null;
                 if (input != null)
                 {
-                    weedRemove = input.Adapt<WeedRemove>();
-                    //Getting Land detail
-                    var landDetail = _context.LandDetails.Where(s => s.ID == input.LandDetailsId).FirstOrDefault();
-                    if (landDetail == null) return new JsonResult(new { ErrorMessage = "The given land details id not found." });
-                    var PartLandDetails = _context.PartitionLandDetails.Where(p => p.ID == input.PartitionLandDetailsId).FirstOrDefault();
-                    if (PartLandDetails == null) return new JsonResult(new { ErrorMessage = "The given land details id not found." });
-
-                    //Setting the land detail value to the Partition Land detail object
-                    weedRemove.LandDetailsId = landDetail;
-                    weedRemove.PartitionLandDetailId = PartLandDetails;
+                    weedRemove = input.Adapt<WeedRemove>();                    
 
                     //Deciding whether the action is Add or Update
                     if (input.ID <= 0) //Add
@@ -76,12 +67,10 @@ namespace ThaniyasFarmerAppAPI.Controllers
         }
 
         [HttpGet("WeedRemove-list")]
-        public async Task<ActionResult<IEnumerable<WeedRemove>>> GetWeedRemoveActivity()
-        {
-          
-                return await _context.WeedRemove.ToListAsync(); 
-           
-           
+        public async Task<ActionResult<IEnumerable<WeedRemove>>> GetWeedRemoveActivity(int userId)
+        {          
+                var list= await _context.WeedRemove.ToListAsync();
+            return list.Where(x => x.UserId == userId).ToList();
         }
 
         [HttpGet("get-WeedRemove/{id}")]
@@ -97,13 +86,11 @@ namespace ThaniyasFarmerAppAPI.Controllers
                 weedRemoveEditViewModel = new WeedRemoveEditViewModel();
                 weedRemoveEditViewModel.ID = WeedRemove.ID;
                 weedRemoveEditViewModel.LabourCost = WeedRemove.LabourCost;
-                weedRemoveEditViewModel.NOofLabours = WeedRemove.NOofLabours;
+                weedRemoveEditViewModel.NOofLabours = WeedRemove.NoOfLabours;
                 weedRemoveEditViewModel.Date = WeedRemove.Date;
                 weedRemoveEditViewModel.Cost = WeedRemove.Cost;
                 weedRemoveEditViewModel.LandDetailName = landDetails;
-                weedRemoveEditViewModel.selectedLandDetailId = WeedRemove.LandDetailsId.ID;
                 weedRemoveEditViewModel.PartLandDetailName = partLandDetails;
-                weedRemoveEditViewModel.selectedPartLandDetailId = WeedRemove.PartitionLandDetailId.ID;
             }
 
             return weedRemoveEditViewModel;

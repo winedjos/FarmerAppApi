@@ -29,23 +29,19 @@ namespace ThaniyasFarmerAppAPI.Controllers
         }
 
         [HttpPost("add-Sale")]
-        public async Task<ActionResult<Sale>> AddSale(SalesViewModel input)
+        public async Task<ActionResult<Sale>> AddSale([FromBody]SalesViewModel input)
         {
             try
             {
                 Sale sale = null;
                 if (input != null)
                 {
-                    sale = input.Adapt<Sale>();
-                    //Getting Land detail
-                    var landDetail = _context.LandDetails.Where(s => s.ID == input.LandDetailsId).FirstOrDefault();
-                    if (landDetail == null) return new JsonResult(new { ErrorMessage = "The given land details id not found." });
+                    sale = input.Adapt<Sale>();                    
                     var PartLandDetails = _context.PartitionLandDetails.Where(p => p.ID == input.PartitionLandDetailsId).FirstOrDefault();
                     if (PartLandDetails == null) return new JsonResult(new { ErrorMessage = "The given land details id not found." });
 
-                    //Setting the land detail value to the Partition Land detail object
-                    sale.LandDetailsId = landDetail;
-                    sale.PartitionLandDetailId = PartLandDetails;
+                    //Setting the land detail value to the Partition Land detail object                    
+                    sale.PartitionLandDetail = PartLandDetails;
 
                     //Deciding whether the action is Add or Update
                     if (input.ID <= 0) //Add
@@ -68,9 +64,10 @@ namespace ThaniyasFarmerAppAPI.Controllers
         }
 
         [HttpGet("sale-list")]
-        public async Task<ActionResult<IEnumerable<Sale>>> GetSaleActivity()
+        public async Task<ActionResult<IEnumerable<Sale>>> GetSaleActivity(int userId)
         {
-            return await _context.Sales.ToListAsync();
+            var list= await _context.Sales.ToListAsync();
+            return list.Where(x => x.UserId == userId).ToList();
         }
 
         [HttpGet("get-Sale/{id}")]
@@ -91,9 +88,7 @@ namespace ThaniyasFarmerAppAPI.Controllers
                 salesEditViewModel.Price = sale.Price;
                 salesEditViewModel.Quantity = sale.Quantity;
                 salesEditViewModel.LandDetailName = landDetails;
-                salesEditViewModel.selectedLandDetailId = sale.LandDetailsId.ID;
                 salesEditViewModel.PartLandDetailName = partLandDetails;
-                salesEditViewModel.selectedPartLandDetailId = sale.PartitionLandDetailId.ID;
             }
             return salesEditViewModel;
         }

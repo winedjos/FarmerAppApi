@@ -40,8 +40,12 @@ namespace ThaniyasFarmerAppAPI.Repository
 
             //modelBuilder.Entity<PartitionLandDetail>()
             //    .HasOne(e => e.LandDetail)
-            //    .WithMany(c => c.PartitionLandDetails);
+            //    .WithMany(c => c.PartitionLandDetails);         
 
+            foreach (var relationship in modelBuilder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))
+            {
+                relationship.DeleteBehavior = DeleteBehavior.Restrict;
+            }
             modelBuilder.Entity<User>().HasData(
                 new User
                 {
@@ -53,6 +57,54 @@ namespace ThaniyasFarmerAppAPI.Repository
                     DateModified=DateTime.UtcNow,
                     //RoleID = 1,
                    // AcceptedTermsAndConditions = true,
+                    IsFirstTimeLogin = true
+                },
+                new User
+                {
+                    ID = 2,
+                    UserName = "seenu",
+                    Email = "seenu@inisys.in",
+                    Password = Helpers.StringCipher.Encrypt("Password*123"),
+                    DateAdded = DateTime.UtcNow,
+                    DateModified = DateTime.UtcNow,
+                    RoleID = 1,
+                    AcceptedTermsAndConditions = true,
+                    IsFirstTimeLogin = true
+                }
+                , new User
+                {
+                    ID = 3,
+                    UserName = "senthil",
+                    Email = "senthil@gmail.com",
+                    Password = Helpers.StringCipher.Encrypt("Password*123"),
+                    DateAdded = DateTime.UtcNow,
+                    DateModified = DateTime.UtcNow,
+                    RoleID = 1,
+                    AcceptedTermsAndConditions = true,
+                    IsFirstTimeLogin = true
+                }
+                , new User
+                {
+                    ID = 4,
+                    UserName = "seetha",
+                    Email = "seetha@inisys.in",
+                    Password = Helpers.StringCipher.Encrypt("Password*123"),
+                    DateAdded = DateTime.UtcNow,
+                    DateModified = DateTime.UtcNow,
+                    RoleID = 1,
+                    AcceptedTermsAndConditions = true,
+                    IsFirstTimeLogin = true
+                }
+                , new User
+                {
+                    ID = 5,
+                    UserName = "edwin",
+                    Email = "edwin@inisys.in",
+                    Password = Helpers.StringCipher.Encrypt("Password*123"),
+                    DateAdded = DateTime.UtcNow,
+                    DateModified = DateTime.UtcNow,
+                    RoleID = 1,
+                    AcceptedTermsAndConditions = true,
                     IsFirstTimeLogin = true
                 });
             modelBuilder.Entity<Configuration>().HasData(
