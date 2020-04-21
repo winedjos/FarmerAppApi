@@ -23,11 +23,7 @@ namespace ThaniyasFarmerAppAPI.Models
 
         public User User { get; set; }
         [ForeignKey("UserIDFK")]
-        public int UserId { get; set; }               
-
-        [ForeignKey("LandDetailId")]
-        public  LandDetail LandDetail { get; set; }
-       // public virtual LandDetail LandDetail { get; set; }
+        public int UserId { get; set; }                     
         
         public new bool Deleted { get; set; }
         public PartitionLandDetail()

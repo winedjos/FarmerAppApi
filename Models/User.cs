@@ -12,6 +12,12 @@ namespace ThaniyasFarmerAppAPI.Models
         [Required]
         public string UserName { get; set; }
 
+        [MaxLength(30)]
+        public string FirstName { get; set; }
+
+        [MaxLength(30)]
+        public string LastName { get; set; }
+
         [Required]
         [MinLength(8)]
         [MaxLength(30)]
@@ -21,12 +27,16 @@ namespace ThaniyasFarmerAppAPI.Models
         [MaxLength(100)]
         public string Email { get; set; }
 
-       // public int RoleID { get; set; }
+        public int RoleID { get; set; }
         public bool IsFirstTimeLogin { get; set; }
-      
+
+        public bool AcceptedTermsAndConditions { get; set; }
+        public string ResetPasswordToken { get; set; }
+
 
         public User()
         {
+            AcceptedTermsAndConditions = false;
             IsFirstTimeLogin = true;         
             Deleted = false;
             DateAdded = DateTime.UtcNow;

@@ -103,9 +103,12 @@ namespace ThaniyasFarmerAppAPI.Controllers
                     landDetails = input.Adapt<LandDetail>();
                     var stateList = _context.StateLists.Where(s => s.ID == input.StateId).FirstOrDefault();
                     if (stateList == null) return new JsonResult(new { ErrorMessage = "The given state id not found." });
+                    var user = _context.Users.Where(s => s.ID == input.UserId).FirstOrDefault();
+                    if (user == null) return new JsonResult(new { ErrorMessage = "The given user id not found." });
+                    landDetails.User = user;
 
                     //Setting the state List value to the Land detail object
-                    landDetails.State = stateList;
+                    landDetails.State = stateList;                    
                     if (input.ID <= 0) 
                     {
                         _context.LandDetails.Add(landDetails);

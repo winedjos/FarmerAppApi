@@ -41,8 +41,13 @@ namespace ThaniyasFarmerAppAPI.Controllers
                 WeedRemove weedRemove = null;
                 if (input != null)
                 {
-                    weedRemove = input.Adapt<WeedRemove>();                    
-
+                    weedRemove = input.Adapt<WeedRemove>();
+                    var user = _context.Users.Where(s => s.ID == input.UserId).FirstOrDefault();
+                    if (user == null) return new JsonResult(new { ErrorMessage = "The given user id not found." });
+                    weedRemove.User = user;
+                    var PartLandDetails = _context.PartitionLandDetails.Where(p => p.ID == input.PartitionLandDetailsId).FirstOrDefault();
+                    if (PartLandDetails == null) return new JsonResult(new { ErrorMessage = "The given land details id not found." });
+                    weedRemove.PartitionLandDetail = PartLandDetails;
                     //Deciding whether the action is Add or Update
                     if (input.ID <= 0) //Add
                     {

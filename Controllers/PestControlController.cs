@@ -48,7 +48,13 @@ namespace ThaniyasFarmerAppAPI.Controllers
                 if (input != null)
                 {
                     pestControl = input.Adapt<PestControl>();
-                    
+
+                    var user = _context.Users.Where(s => s.ID == input.UserId).FirstOrDefault();
+                    if (user == null) return new JsonResult(new { ErrorMessage = "The given user id not found." });
+                    pestControl.User = user;
+                    var PartLandDetails = _context.PartitionLandDetails.Where(p => p.ID == input.PartitionLandDetailsId).FirstOrDefault();
+                    if (PartLandDetails == null) return new JsonResult(new { ErrorMessage = "The given land details id not found." });
+                    pestControl.PartitionLandDetail = PartLandDetails;
                     //Deciding whether the action is Add or Update
                     if (input.ID <= 0) //Add
                     {

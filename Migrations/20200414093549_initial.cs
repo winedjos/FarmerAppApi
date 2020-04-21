@@ -53,10 +53,9 @@ namespace ThaniyasFarmerAppAPI.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     DateAdded = table.Column<DateTime>(nullable: false),
                     DateModified = table.Column<DateTime>(nullable: false),
-                    Name = table.Column<string>(nullable: true),
-                    Email = table.Column<string>(nullable: true),
-                    MobileNumber = table.Column<string>(nullable: true),
-                    Deleted = table.Column<bool>(nullable: false)
+                    Deleted = table.Column<bool>(nullable: false),
+                    UserName = table.Column<string>(nullable: true),
+                    Password = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -101,9 +100,9 @@ namespace ThaniyasFarmerAppAPI.Migrations
                     DateModified = table.Column<DateTime>(nullable: false),
                     Deleted = table.Column<bool>(nullable: false),
                     UserName = table.Column<string>(nullable: false),
-                    Password = table.Column<string>(maxLength: 30, nullable: false),
                     FirstName = table.Column<string>(maxLength: 30, nullable: true),
                     LastName = table.Column<string>(maxLength: 30, nullable: true),
+                    Password = table.Column<string>(maxLength: 30, nullable: false),
                     Email = table.Column<string>(maxLength: 100, nullable: false),
                     RoleID = table.Column<int>(nullable: false),
                     IsFirstTimeLogin = table.Column<bool>(nullable: false),
@@ -223,11 +222,11 @@ namespace ThaniyasFarmerAppAPI.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     DateAdded = table.Column<DateTime>(nullable: false),
                     DateModified = table.Column<DateTime>(nullable: false),
-                    Deleted = table.Column<bool>(nullable: false),
                     LandDirection = table.Column<string>(maxLength: 75, nullable: false),
                     AreaSize = table.Column<string>(maxLength: 75, nullable: false),
                     LandDetailId = table.Column<int>(nullable: false),
-                    UserId = table.Column<int>(nullable: false)
+                    UserId = table.Column<int>(nullable: false),
+                    Deleted = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -451,10 +450,10 @@ namespace ThaniyasFarmerAppAPI.Migrations
                 columns: new[] { "ID", "DateAdded", "DateModified", "Deleted", "Name", "ParentID", "Text", "Type", "Value" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2020, 4, 7, 13, 12, 51, 783, DateTimeKind.Utc).AddTicks(6010), new DateTime(2020, 4, 7, 13, 12, 51, 783, DateTimeKind.Utc).AddTicks(6011), false, "UserID", null, null, "SystemEmailSettings", "vNp/Rg/59Wq/aUZBS0+1LDWmAArWOdzzJByWFcSqj9c=" },
-                    { 2, new DateTime(2020, 4, 7, 13, 12, 51, 784, DateTimeKind.Utc).AddTicks(1340), new DateTime(2020, 4, 7, 13, 12, 51, 784, DateTimeKind.Utc).AddTicks(1341), false, "Password", null, null, "SystemEmailSettings", "DR7VkCQllyJBLRHqnhoFLg==" },
-                    { 3, new DateTime(2020, 4, 7, 13, 12, 51, 784, DateTimeKind.Utc).AddTicks(3230), new DateTime(2020, 4, 7, 13, 12, 51, 784, DateTimeKind.Utc).AddTicks(3232), false, "SMTPPort", null, null, "SystemEmailSettings", "KfPgC+VOAFLCwNmgAKPmfQ==" },
-                    { 4, new DateTime(2020, 4, 7, 13, 12, 51, 784, DateTimeKind.Utc).AddTicks(4976), new DateTime(2020, 4, 7, 13, 12, 51, 784, DateTimeKind.Utc).AddTicks(4977), false, "Host", null, null, "SystemEmailSettings", "+fNJD/SKxu6Pyz64X9mIMQ==" }
+                    { 1, new DateTime(2020, 4, 14, 9, 35, 49, 297, DateTimeKind.Utc).AddTicks(9827), new DateTime(2020, 4, 14, 9, 35, 49, 297, DateTimeKind.Utc).AddTicks(9828), false, "UserID", null, null, "SystemEmailSettings", "vNp/Rg/59Wq/aUZBS0+1LDWmAArWOdzzJByWFcSqj9c=" },
+                    { 2, new DateTime(2020, 4, 14, 9, 35, 49, 298, DateTimeKind.Utc).AddTicks(5578), new DateTime(2020, 4, 14, 9, 35, 49, 298, DateTimeKind.Utc).AddTicks(5579), false, "Password", null, null, "SystemEmailSettings", "DR7VkCQllyJBLRHqnhoFLg==" },
+                    { 3, new DateTime(2020, 4, 14, 9, 35, 49, 298, DateTimeKind.Utc).AddTicks(7459), new DateTime(2020, 4, 14, 9, 35, 49, 298, DateTimeKind.Utc).AddTicks(7459), false, "SMTPPort", null, null, "SystemEmailSettings", "KfPgC+VOAFLCwNmgAKPmfQ==" },
+                    { 4, new DateTime(2020, 4, 14, 9, 35, 49, 298, DateTimeKind.Utc).AddTicks(9110), new DateTime(2020, 4, 14, 9, 35, 49, 298, DateTimeKind.Utc).AddTicks(9110), false, "Host", null, null, "SystemEmailSettings", "+fNJD/SKxu6Pyz64X9mIMQ==" }
                 });
 
             migrationBuilder.InsertData(
@@ -472,11 +471,11 @@ namespace ThaniyasFarmerAppAPI.Migrations
                 columns: new[] { "ID", "AcceptedTermsAndConditions", "DateAdded", "DateModified", "Deleted", "Email", "FirstName", "IsFirstTimeLogin", "LastName", "Password", "ResetPasswordToken", "RoleID", "UserName" },
                 values: new object[,]
                 {
-                    { 5, true, new DateTime(2020, 4, 7, 13, 12, 51, 783, DateTimeKind.Utc).AddTicks(1001), new DateTime(2020, 4, 7, 13, 12, 51, 783, DateTimeKind.Utc).AddTicks(1003), false, "edwin@inisys.in", null, true, null, "llFg1YwNHgLVbQGDz1aaEQ==", null, 1, "edwin" },
-                    { 3, true, new DateTime(2020, 4, 7, 13, 12, 51, 782, DateTimeKind.Utc).AddTicks(7388), new DateTime(2020, 4, 7, 13, 12, 51, 782, DateTimeKind.Utc).AddTicks(7390), false, "senthil@gmail.com", null, true, null, "llFg1YwNHgLVbQGDz1aaEQ==", null, 1, "senthil" },
-                    { 4, true, new DateTime(2020, 4, 7, 13, 12, 51, 782, DateTimeKind.Utc).AddTicks(9290), new DateTime(2020, 4, 7, 13, 12, 51, 782, DateTimeKind.Utc).AddTicks(9291), false, "seetha@inisys.in", null, true, null, "llFg1YwNHgLVbQGDz1aaEQ==", null, 1, "seetha" },
-                    { 1, true, new DateTime(2020, 4, 7, 13, 12, 51, 782, DateTimeKind.Utc).AddTicks(1122), new DateTime(2020, 4, 7, 13, 12, 51, 782, DateTimeKind.Utc).AddTicks(1145), false, "winedjos@gmail.com", null, true, null, "llFg1YwNHgLVbQGDz1aaEQ==", null, 1, "admin" },
-                    { 2, true, new DateTime(2020, 4, 7, 13, 12, 51, 782, DateTimeKind.Utc).AddTicks(5394), new DateTime(2020, 4, 7, 13, 12, 51, 782, DateTimeKind.Utc).AddTicks(5396), false, "seenu@inisys.in", null, true, null, "llFg1YwNHgLVbQGDz1aaEQ==", null, 1, "seenu" }
+                    { 5, true, new DateTime(2020, 4, 14, 9, 35, 49, 297, DateTimeKind.Utc).AddTicks(4149), new DateTime(2020, 4, 14, 9, 35, 49, 297, DateTimeKind.Utc).AddTicks(4149), false, "edwin@inisys.in", null, true, null, "llFg1YwNHgLVbQGDz1aaEQ==", null, 1, "edwin" },
+                    { 3, true, new DateTime(2020, 4, 14, 9, 35, 49, 297, DateTimeKind.Utc).AddTicks(820), new DateTime(2020, 4, 14, 9, 35, 49, 297, DateTimeKind.Utc).AddTicks(822), false, "senthil@gmail.com", null, true, null, "llFg1YwNHgLVbQGDz1aaEQ==", null, 1, "senthil" },
+                    { 4, true, new DateTime(2020, 4, 14, 9, 35, 49, 297, DateTimeKind.Utc).AddTicks(2496), new DateTime(2020, 4, 14, 9, 35, 49, 297, DateTimeKind.Utc).AddTicks(2497), false, "seetha@inisys.in", null, true, null, "llFg1YwNHgLVbQGDz1aaEQ==", null, 1, "seetha" },
+                    { 1, false, new DateTime(2020, 4, 14, 9, 35, 49, 296, DateTimeKind.Utc).AddTicks(4052), new DateTime(2020, 4, 14, 9, 35, 49, 296, DateTimeKind.Utc).AddTicks(4080), false, "winedjos@gmail.com", null, true, null, "llFg1YwNHgLVbQGDz1aaEQ==", null, 0, "admin" },
+                    { 2, true, new DateTime(2020, 4, 14, 9, 35, 49, 296, DateTimeKind.Utc).AddTicks(7521), new DateTime(2020, 4, 14, 9, 35, 49, 296, DateTimeKind.Utc).AddTicks(7522), false, "seenu@inisys.in", null, true, null, "llFg1YwNHgLVbQGDz1aaEQ==", null, 1, "seenu" }
                 });
 
             migrationBuilder.InsertData(
@@ -501,26 +500,26 @@ namespace ThaniyasFarmerAppAPI.Migrations
                 columns: new[] { "ID", "DateAdded", "DateModified", "Deleted", "PagesID", "RolesID" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2020, 4, 7, 13, 12, 51, 786, DateTimeKind.Utc).AddTicks(6329), new DateTime(2020, 4, 7, 13, 12, 51, 786, DateTimeKind.Utc).AddTicks(6331), false, 1, 1 },
-                    { 19, new DateTime(2020, 4, 7, 13, 12, 51, 786, DateTimeKind.Utc).AddTicks(8724), new DateTime(2020, 4, 7, 13, 12, 51, 786, DateTimeKind.Utc).AddTicks(8725), false, 9, 2 },
-                    { 9, new DateTime(2020, 4, 7, 13, 12, 51, 786, DateTimeKind.Utc).AddTicks(8697), new DateTime(2020, 4, 7, 13, 12, 51, 786, DateTimeKind.Utc).AddTicks(8698), false, 9, 1 },
-                    { 18, new DateTime(2020, 4, 7, 13, 12, 51, 786, DateTimeKind.Utc).AddTicks(8721), new DateTime(2020, 4, 7, 13, 12, 51, 786, DateTimeKind.Utc).AddTicks(8722), false, 8, 2 },
-                    { 8, new DateTime(2020, 4, 7, 13, 12, 51, 786, DateTimeKind.Utc).AddTicks(8695), new DateTime(2020, 4, 7, 13, 12, 51, 786, DateTimeKind.Utc).AddTicks(8695), false, 8, 1 },
-                    { 17, new DateTime(2020, 4, 7, 13, 12, 51, 786, DateTimeKind.Utc).AddTicks(8719), new DateTime(2020, 4, 7, 13, 12, 51, 786, DateTimeKind.Utc).AddTicks(8719), false, 7, 2 },
-                    { 7, new DateTime(2020, 4, 7, 13, 12, 51, 786, DateTimeKind.Utc).AddTicks(8692), new DateTime(2020, 4, 7, 13, 12, 51, 786, DateTimeKind.Utc).AddTicks(8693), false, 7, 1 },
-                    { 16, new DateTime(2020, 4, 7, 13, 12, 51, 786, DateTimeKind.Utc).AddTicks(8716), new DateTime(2020, 4, 7, 13, 12, 51, 786, DateTimeKind.Utc).AddTicks(8717), false, 6, 2 },
-                    { 6, new DateTime(2020, 4, 7, 13, 12, 51, 786, DateTimeKind.Utc).AddTicks(8689), new DateTime(2020, 4, 7, 13, 12, 51, 786, DateTimeKind.Utc).AddTicks(8690), false, 6, 1 },
-                    { 15, new DateTime(2020, 4, 7, 13, 12, 51, 786, DateTimeKind.Utc).AddTicks(8713), new DateTime(2020, 4, 7, 13, 12, 51, 786, DateTimeKind.Utc).AddTicks(8714), false, 5, 2 },
-                    { 5, new DateTime(2020, 4, 7, 13, 12, 51, 786, DateTimeKind.Utc).AddTicks(8686), new DateTime(2020, 4, 7, 13, 12, 51, 786, DateTimeKind.Utc).AddTicks(8687), false, 5, 1 },
-                    { 14, new DateTime(2020, 4, 7, 13, 12, 51, 786, DateTimeKind.Utc).AddTicks(8711), new DateTime(2020, 4, 7, 13, 12, 51, 786, DateTimeKind.Utc).AddTicks(8711), false, 4, 2 },
-                    { 4, new DateTime(2020, 4, 7, 13, 12, 51, 786, DateTimeKind.Utc).AddTicks(8684), new DateTime(2020, 4, 7, 13, 12, 51, 786, DateTimeKind.Utc).AddTicks(8684), false, 4, 1 },
-                    { 13, new DateTime(2020, 4, 7, 13, 12, 51, 786, DateTimeKind.Utc).AddTicks(8708), new DateTime(2020, 4, 7, 13, 12, 51, 786, DateTimeKind.Utc).AddTicks(8709), false, 3, 2 },
-                    { 3, new DateTime(2020, 4, 7, 13, 12, 51, 786, DateTimeKind.Utc).AddTicks(8681), new DateTime(2020, 4, 7, 13, 12, 51, 786, DateTimeKind.Utc).AddTicks(8682), false, 3, 1 },
-                    { 12, new DateTime(2020, 4, 7, 13, 12, 51, 786, DateTimeKind.Utc).AddTicks(8705), new DateTime(2020, 4, 7, 13, 12, 51, 786, DateTimeKind.Utc).AddTicks(8706), false, 2, 2 },
-                    { 2, new DateTime(2020, 4, 7, 13, 12, 51, 786, DateTimeKind.Utc).AddTicks(8656), new DateTime(2020, 4, 7, 13, 12, 51, 786, DateTimeKind.Utc).AddTicks(8657), false, 2, 1 },
-                    { 11, new DateTime(2020, 4, 7, 13, 12, 51, 786, DateTimeKind.Utc).AddTicks(8703), new DateTime(2020, 4, 7, 13, 12, 51, 786, DateTimeKind.Utc).AddTicks(8704), false, 1, 2 },
-                    { 10, new DateTime(2020, 4, 7, 13, 12, 51, 786, DateTimeKind.Utc).AddTicks(8700), new DateTime(2020, 4, 7, 13, 12, 51, 786, DateTimeKind.Utc).AddTicks(8701), false, 10, 1 },
-                    { 20, new DateTime(2020, 4, 7, 13, 12, 51, 786, DateTimeKind.Utc).AddTicks(8727), new DateTime(2020, 4, 7, 13, 12, 51, 786, DateTimeKind.Utc).AddTicks(8727), false, 10, 2 }
+                    { 1, new DateTime(2020, 4, 14, 9, 35, 49, 300, DateTimeKind.Utc).AddTicks(2877), new DateTime(2020, 4, 14, 9, 35, 49, 300, DateTimeKind.Utc).AddTicks(2878), false, 1, 1 },
+                    { 19, new DateTime(2020, 4, 14, 9, 35, 49, 300, DateTimeKind.Utc).AddTicks(4379), new DateTime(2020, 4, 14, 9, 35, 49, 300, DateTimeKind.Utc).AddTicks(4380), false, 9, 2 },
+                    { 9, new DateTime(2020, 4, 14, 9, 35, 49, 300, DateTimeKind.Utc).AddTicks(4361), new DateTime(2020, 4, 14, 9, 35, 49, 300, DateTimeKind.Utc).AddTicks(4362), false, 9, 1 },
+                    { 18, new DateTime(2020, 4, 14, 9, 35, 49, 300, DateTimeKind.Utc).AddTicks(4377), new DateTime(2020, 4, 14, 9, 35, 49, 300, DateTimeKind.Utc).AddTicks(4378), false, 8, 2 },
+                    { 8, new DateTime(2020, 4, 14, 9, 35, 49, 300, DateTimeKind.Utc).AddTicks(4360), new DateTime(2020, 4, 14, 9, 35, 49, 300, DateTimeKind.Utc).AddTicks(4360), false, 8, 1 },
+                    { 17, new DateTime(2020, 4, 14, 9, 35, 49, 300, DateTimeKind.Utc).AddTicks(4375), new DateTime(2020, 4, 14, 9, 35, 49, 300, DateTimeKind.Utc).AddTicks(4376), false, 7, 2 },
+                    { 7, new DateTime(2020, 4, 14, 9, 35, 49, 300, DateTimeKind.Utc).AddTicks(4358), new DateTime(2020, 4, 14, 9, 35, 49, 300, DateTimeKind.Utc).AddTicks(4358), false, 7, 1 },
+                    { 16, new DateTime(2020, 4, 14, 9, 35, 49, 300, DateTimeKind.Utc).AddTicks(4374), new DateTime(2020, 4, 14, 9, 35, 49, 300, DateTimeKind.Utc).AddTicks(4374), false, 6, 2 },
+                    { 6, new DateTime(2020, 4, 14, 9, 35, 49, 300, DateTimeKind.Utc).AddTicks(4356), new DateTime(2020, 4, 14, 9, 35, 49, 300, DateTimeKind.Utc).AddTicks(4357), false, 6, 1 },
+                    { 15, new DateTime(2020, 4, 14, 9, 35, 49, 300, DateTimeKind.Utc).AddTicks(4372), new DateTime(2020, 4, 14, 9, 35, 49, 300, DateTimeKind.Utc).AddTicks(4373), false, 5, 2 },
+                    { 5, new DateTime(2020, 4, 14, 9, 35, 49, 300, DateTimeKind.Utc).AddTicks(4354), new DateTime(2020, 4, 14, 9, 35, 49, 300, DateTimeKind.Utc).AddTicks(4355), false, 5, 1 },
+                    { 14, new DateTime(2020, 4, 14, 9, 35, 49, 300, DateTimeKind.Utc).AddTicks(4370), new DateTime(2020, 4, 14, 9, 35, 49, 300, DateTimeKind.Utc).AddTicks(4371), false, 4, 2 },
+                    { 4, new DateTime(2020, 4, 14, 9, 35, 49, 300, DateTimeKind.Utc).AddTicks(4352), new DateTime(2020, 4, 14, 9, 35, 49, 300, DateTimeKind.Utc).AddTicks(4353), false, 4, 1 },
+                    { 13, new DateTime(2020, 4, 14, 9, 35, 49, 300, DateTimeKind.Utc).AddTicks(4368), new DateTime(2020, 4, 14, 9, 35, 49, 300, DateTimeKind.Utc).AddTicks(4369), false, 3, 2 },
+                    { 3, new DateTime(2020, 4, 14, 9, 35, 49, 300, DateTimeKind.Utc).AddTicks(4350), new DateTime(2020, 4, 14, 9, 35, 49, 300, DateTimeKind.Utc).AddTicks(4351), false, 3, 1 },
+                    { 12, new DateTime(2020, 4, 14, 9, 35, 49, 300, DateTimeKind.Utc).AddTicks(4367), new DateTime(2020, 4, 14, 9, 35, 49, 300, DateTimeKind.Utc).AddTicks(4367), false, 2, 2 },
+                    { 2, new DateTime(2020, 4, 14, 9, 35, 49, 300, DateTimeKind.Utc).AddTicks(4336), new DateTime(2020, 4, 14, 9, 35, 49, 300, DateTimeKind.Utc).AddTicks(4337), false, 2, 1 },
+                    { 11, new DateTime(2020, 4, 14, 9, 35, 49, 300, DateTimeKind.Utc).AddTicks(4365), new DateTime(2020, 4, 14, 9, 35, 49, 300, DateTimeKind.Utc).AddTicks(4365), false, 1, 2 },
+                    { 10, new DateTime(2020, 4, 14, 9, 35, 49, 300, DateTimeKind.Utc).AddTicks(4363), new DateTime(2020, 4, 14, 9, 35, 49, 300, DateTimeKind.Utc).AddTicks(4364), false, 10, 1 },
+                    { 20, new DateTime(2020, 4, 14, 9, 35, 49, 300, DateTimeKind.Utc).AddTicks(4381), new DateTime(2020, 4, 14, 9, 35, 49, 300, DateTimeKind.Utc).AddTicks(4381), false, 10, 2 }
                 });
 
             migrationBuilder.CreateIndex(

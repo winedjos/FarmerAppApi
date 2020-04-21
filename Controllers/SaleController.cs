@@ -42,6 +42,9 @@ namespace ThaniyasFarmerAppAPI.Controllers
 
                     //Setting the land detail value to the Partition Land detail object                    
                     sale.PartitionLandDetail = PartLandDetails;
+                    var user = _context.Users.Where(s => s.ID == input.UserId).FirstOrDefault();
+                    if (user == null) return new JsonResult(new { ErrorMessage = "The given user id not found." });
+                    sale.User = user;
 
                     //Deciding whether the action is Add or Update
                     if (input.ID <= 0) //Add
