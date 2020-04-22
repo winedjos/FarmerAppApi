@@ -72,7 +72,8 @@ namespace ThaniyasFarmerAppAPI.Controllers
         [HttpGet("PartitionLand-list")]
         public async Task<ActionResult<List<PartitionLandDetail>>> GetPartLandActivity(int userId)
         {
-            var partLandList = await _context.PartitionLandDetails.ToListAsync();
+            var partLandList = await _context.PartitionLandDetails.Where(d => d.Deleted == false && d.UserId == userId)
+                    .Include(p => p.LandDetail).ToListAsync();
             return partLandList.Where(x => x.UserId == userId).ToList();
 
         }

@@ -74,7 +74,8 @@ namespace ThaniyasFarmerAppAPI.Controllers
         [HttpGet("WeedRemove-list")]
         public async Task<ActionResult<IEnumerable<WeedRemove>>> GetWeedRemoveActivity(int userId)
         {          
-                var list= await _context.WeedRemove.ToListAsync();
+                var list= await _context.WeedRemove.Where(d => d.Deleted == false && d.UserId == userId)
+                    .Include(p => p.PartitionLandDetail).ToListAsync();
             return list.Where(x => x.UserId == userId).ToList();
         }
 

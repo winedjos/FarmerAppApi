@@ -69,7 +69,8 @@ namespace ThaniyasFarmerAppAPI.Controllers
         [HttpGet("sale-list")]
         public async Task<ActionResult<IEnumerable<Sale>>> GetSaleActivity(int userId)
         {
-            var list= await _context.Sales.ToListAsync();
+            var list= await _context.Sales.Where(d => d.Deleted == false && d.UserId == userId)
+                    .Include(p => p.PartitionLandDetail).ToListAsync();
             return list.Where(x => x.UserId == userId).ToList();
         }
 

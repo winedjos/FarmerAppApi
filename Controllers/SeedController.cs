@@ -72,7 +72,8 @@ namespace ThaniyasFarmerAppAPI.Controllers
         [HttpGet("seed-list")]
         public async Task<ActionResult<IEnumerable<Seeding>>> GetSeedActivity(int userId)
         {
-            var list= await _context.Seedings.ToListAsync();
+            var list= await _context.Seedings.Where(d => d.Deleted == false && d.UserId == userId)
+                    .Include(p => p.PartitionLandDetail).ToListAsync();
             return list.Where(x => x.UserId == userId).ToList();
         }
 

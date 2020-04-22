@@ -29,7 +29,8 @@ namespace ThaniyasFarmerAppAPI.Controllers
         [HttpGet("pestControl-list")]
         public async Task<ActionResult<IEnumerable<PestControl>>> GetPestControlActivity(int userId)
         {
-            var list= await _context.PestControls.ToListAsync();
+            var list= await _context.PestControls.Where(d => d.Deleted == false && d.UserId == userId)
+                    .Include(p => p.PartitionLandDetail).ToListAsync();
             return list.Where(x => x.UserId == userId).ToList();
         }
 

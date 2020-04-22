@@ -38,8 +38,6 @@ namespace ThaniyasFarmerAppAPI.Controllers
                 if (input != null)
                 {
                     harvest = input.Adapt<Harvestings>();
-                    
-                    
                     var user = _context.Users.Where(s => s.ID == input.UserId).FirstOrDefault();
                     if (user == null) return new JsonResult(new { ErrorMessage = "The given user id not found." });
                     harvest.User = user;
@@ -74,7 +72,8 @@ namespace ThaniyasFarmerAppAPI.Controllers
         [HttpGet("harvesting-list")]
         public async Task<ActionResult<IEnumerable<Harvestings>>> GetHarvestActivity(int userId)
         {
-            var list= await _context.Harvestings.ToListAsync();
+            var list= await _context.Harvestings.Where(d => d.Deleted == false && d.UserId == userId)
+                    .Include(p => p.PartitionLandDetail).ToListAsync();
             return list.Where(x => x.UserId == userId).ToList();
         }
 
