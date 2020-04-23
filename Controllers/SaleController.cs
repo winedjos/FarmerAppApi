@@ -57,7 +57,7 @@ namespace ThaniyasFarmerAppAPI.Controllers
                     }
                 }
                 await _context.SaveChangesAsync();
-                var result = GetSale(sale.ID);
+                //var result = GetSale(sale.ID);
                 return new JsonResult(sale);
             }
             catch (Exception _ex)

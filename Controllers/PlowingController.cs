@@ -59,7 +59,7 @@ namespace ThaniyasFarmerAppAPI.Controllers
                     }
                 }
                 await _context.SaveChangesAsync();
-                var result = GetPlowing(plowing.ID);
+                //var result = GetPlowing(plowing.ID);
                 return new JsonResult(plowing);
             }
             catch (Exception _ex)

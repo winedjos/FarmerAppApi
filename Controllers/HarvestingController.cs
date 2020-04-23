@@ -59,9 +59,9 @@ namespace ThaniyasFarmerAppAPI.Controllers
                 await _context.SaveChangesAsync();
 
                 //return the getharverst method value
-                var result = GetHarvest(harvest.ID);
+                //var result = GetHarvest(harvest.ID);
 
-                return new JsonResult(result);
+                return new JsonResult(harvest);
             }
             catch (Exception _ex)
             {

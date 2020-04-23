@@ -59,7 +59,7 @@ namespace ThaniyasFarmerAppAPI.Controllers
                     }
                 }
                 await _context.SaveChangesAsync();
-                var result = GetWeedRemove(weedRemove.ID);
+                //var result = GetWeedRemove(weedRemove.ID);
                 return new JsonResult(weedRemove);
             }
             catch (Exception _ex)

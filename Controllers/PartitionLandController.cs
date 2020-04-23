@@ -60,7 +60,7 @@ namespace ThaniyasFarmerAppAPI.Controllers
                     }
                 }
                 await _context.SaveChangesAsync();
-                var result = GetPartLand(partitionLandDetail.ID);
+                //var result = GetPartLand(partitionLandDetail.ID);
                 return new JsonResult(partitionLandDetail);
             }
             catch (Exception _ex)

@@ -67,7 +67,7 @@ namespace ThaniyasFarmerAppAPI.Controllers
                     }
                 }
                 await _context.SaveChangesAsync();
-                var result = GetPestControl(pestControl.ID);
+                //var result = GetPestControl(pestControl.ID);
                 return new JsonResult(pestControl);
             }
             catch (Exception _ex)

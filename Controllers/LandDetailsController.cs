@@ -119,7 +119,7 @@ namespace ThaniyasFarmerAppAPI.Controllers
                     }
                 }
                 await _context.SaveChangesAsync();
-                var result = GetLandDetail(landDetails.ID);
+                //var result = GetLandDetail(landDetails.ID);
                 return new JsonResult(landDetails);
             }
             catch (Exception _ex)

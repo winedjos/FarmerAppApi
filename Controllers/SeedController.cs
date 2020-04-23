@@ -59,7 +59,7 @@ namespace ThaniyasFarmerAppAPI.Controllers
                     }
                 }
                 await _context.SaveChangesAsync();
-                var result = GetSeed(seeding.ID);
+                //var result = GetSeed(seeding.ID);
                 return new JsonResult(seeding);
             }
             catch (Exception _ex)
