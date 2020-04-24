@@ -45,7 +45,7 @@ namespace ThaniyasFarmerAppAPI.Controllers
                     var user = _context.Users.Where(s => s.ID == input.UserId).FirstOrDefault();
                     if (user == null) return new JsonResult(new { ErrorMessage = "The given user id not found." });
                     seeding.User = user;
-                    var PartLandDetails = _context.PartitionLandDetails.Where(p => p.ID == input.PartitionLandDetailsId).FirstOrDefault();
+                    var PartLandDetails = _context.PartitionLandDetails.Where(p => p.ID == input.PartitionLandDetailId).FirstOrDefault();
                     if (PartLandDetails == null) return new JsonResult(new { ErrorMessage = "The given land details id not found." });
                     seeding.PartitionLandDetail = PartLandDetails;
                     //Deciding whether the action is Add or Update
@@ -89,7 +89,7 @@ namespace ThaniyasFarmerAppAPI.Controllers
                 seedEditViewModel = new SeedEditViewModel();
                 seedEditViewModel.ID = Seed.ID;
                 seedEditViewModel.LabourCost = Seed.LabourCost;
-                seedEditViewModel.NOofLabours = Seed.NOofLabours;
+                seedEditViewModel.NoOfLabours = Seed.NoOfLabours;
                 seedEditViewModel.Quantity = Seed.Quantity;
                 seedEditViewModel.SeedCost = Seed.SeedCost;
                 seedEditViewModel.SeedName = Seed.SeedName;

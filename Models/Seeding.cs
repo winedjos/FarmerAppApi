@@ -20,9 +20,10 @@ namespace ThaniyasFarmerAppAPI.Models
         [MaxLength(50)]
         public string SeedName { get; set; }
         [MaxLength(50)]
+        public DateTime Date { get; set; }
         public string SeedCost { get; set; }
         [MaxLength(50)]
-        public string NOofLabours { get; set; }
+        public string NoOfLabours { get; set; }
         public int LabourCost { get; set; }
         public new bool Deleted { get; set; }
 

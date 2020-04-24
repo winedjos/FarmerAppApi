@@ -53,7 +53,7 @@ namespace ThaniyasFarmerAppAPI.Controllers
                     var user = _context.Users.Where(s => s.ID == input.UserId).FirstOrDefault();
                     if (user == null) return new JsonResult(new { ErrorMessage = "The given user id not found." });
                     pestControl.User = user;
-                    var PartLandDetails = _context.PartitionLandDetails.Where(p => p.ID == input.PartitionLandDetailsId).FirstOrDefault();
+                    var PartLandDetails = _context.PartitionLandDetails.Where(p => p.ID == input.PartitionLandDetailId).FirstOrDefault();
                     if (PartLandDetails == null) return new JsonResult(new { ErrorMessage = "The given land details id not found." });
                     pestControl.PartitionLandDetail = PartLandDetails;
                     //Deciding whether the action is Add or Update
@@ -91,7 +91,7 @@ namespace ThaniyasFarmerAppAPI.Controllers
                 pestControlEditViewModel.LabourCost = pestControl.LabourCost;
                 pestControlEditViewModel.NameofthePestSide = pestControl.NameofthePestSide;
                 pestControlEditViewModel.Purpose = pestControl.Purpose;
-                pestControlEditViewModel.PestControlDate = pestControl.PestControlDate;
+                //pestControlEditViewModel.PestControlDate = pestControl.PestControlDate;
                 pestControlEditViewModel.Cost = pestControl.Cost;
                 pestControlEditViewModel.LandDetailName = landDetails;
                 pestControlEditViewModel.PartLandDetailName = partLandDetails;

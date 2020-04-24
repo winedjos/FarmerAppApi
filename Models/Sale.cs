@@ -16,7 +16,7 @@ namespace ThaniyasFarmerAppAPI.Models
         public PartitionLandDetail PartitionLandDetail { get; set; }
         [ForeignKey("PartitionLandDetailIDFK")]
         public int PartitionLandDetailId { get; set; }
-        public string SaleDate { get; set; }
+        public DateTime SaleDate { get; set; }
         [MaxLength(50)]
         public string Quantity { get; set; }
         [MaxLength(50)]

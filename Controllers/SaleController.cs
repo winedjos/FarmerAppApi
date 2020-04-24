@@ -37,7 +37,7 @@ namespace ThaniyasFarmerAppAPI.Controllers
                 if (input != null)
                 {
                     sale = input.Adapt<Sale>();                    
-                    var PartLandDetails = _context.PartitionLandDetails.Where(p => p.ID == input.PartitionLandDetailsId).FirstOrDefault();
+                    var PartLandDetails = _context.PartitionLandDetails.Where(p => p.ID == input.PartitionLandDetailId).FirstOrDefault();
                     if (PartLandDetails == null) return new JsonResult(new { ErrorMessage = "The given land details id not found." });
 
                     //Setting the land detail value to the Partition Land detail object                    
@@ -87,7 +87,7 @@ namespace ThaniyasFarmerAppAPI.Controllers
                 salesEditViewModel = new SalesEditViewModel();
                 salesEditViewModel.BuyerMobileNumber = sale.BuyerMobileNumber;
                 salesEditViewModel.BuyerName = sale.BuyerName;
-                salesEditViewModel.SaleDate = sale.SaleDate;
+                //salesEditViewModel.SaleDate = sale.SaleDate;
                 salesEditViewModel.ID = sale.ID;
                 salesEditViewModel.Price = sale.Price;
                 salesEditViewModel.Quantity = sale.Quantity;

@@ -258,7 +258,7 @@ namespace ThaniyasFarmerAppAPI.Migrations
                     PartitionLandDetailId = table.Column<int>(nullable: false),
                     Date = table.Column<string>(nullable: true),
                     Cost = table.Column<string>(maxLength: 50, nullable: true),
-                    NOofLabours = table.Column<string>(maxLength: 50, nullable: true),
+                    NoOfLabours = table.Column<string>(maxLength: 50, nullable: true),
                     LabourCost = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -391,7 +391,7 @@ namespace ThaniyasFarmerAppAPI.Migrations
                     Quantity = table.Column<string>(maxLength: 50, nullable: true),
                     SeedName = table.Column<string>(maxLength: 50, nullable: true),
                     SeedCost = table.Column<string>(maxLength: 50, nullable: true),
-                    NOofLabours = table.Column<string>(maxLength: 50, nullable: true),
+                    NoOfLabours = table.Column<string>(maxLength: 50, nullable: true),
                     LabourCost = table.Column<int>(nullable: false),
                     Deleted = table.Column<bool>(nullable: false)
                 },

@@ -40,7 +40,7 @@ namespace ThaniyasFarmerAppAPI.Controllers
                 {
                     partitionLandDetail = input.Adapt<PartitionLandDetail>();
                     //Getting Land detail
-                    var landDetail = _context.LandDetails.Where(s => s.ID == input.LandDetailsId).FirstOrDefault();
+                    var landDetail = _context.LandDetails.Where(s => s.ID == input.LandDetailId).FirstOrDefault();
                     if (landDetail == null) return new JsonResult(new { ErrorMessage = "The given land details id not found." });
                     var user = _context.Users.Where(s => s.ID == input.UserId).FirstOrDefault();
                     if (user == null) return new JsonResult(new { ErrorMessage = "The given user id not found." });

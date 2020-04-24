@@ -41,7 +41,7 @@ namespace ThaniyasFarmerAppAPI.Controllers
                     var user = _context.Users.Where(s => s.ID == input.UserId).FirstOrDefault();
                     if (user == null) return new JsonResult(new { ErrorMessage = "The given user id not found." });
                     harvest.User = user;
-                    var PartLandDetails = _context.PartitionLandDetails.Where(p => p.ID == input.PartitionLandDetailsId).FirstOrDefault();
+                    var PartLandDetails = _context.PartitionLandDetails.Where(p => p.ID == input.PartitionLandDetailId).FirstOrDefault();
                     if (PartLandDetails == null) return new JsonResult(new { ErrorMessage = "The given land details id not found." });
                     harvest.PartitionLandDetail = PartLandDetails;
 
@@ -90,7 +90,7 @@ namespace ThaniyasFarmerAppAPI.Controllers
                 harvestingEditViewModel = new HarvestingEditViewModel();
                 harvestingEditViewModel.ID = Harvest.ID;
                 harvestingEditViewModel.LabourCost = Harvest.LabourCost;
-                harvestingEditViewModel.NOofLabours = Harvest.NOofLabours;
+                harvestingEditViewModel.NoOfLabours = Harvest.NoOfLabours;
                 harvestingEditViewModel.Cost = Harvest.Cost;
                 harvestingEditViewModel.Date = Harvest.Date;
             }
