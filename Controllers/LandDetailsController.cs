@@ -28,10 +28,18 @@ namespace ThaniyasFarmerAppAPI.Controllers
         {
             try
             {
-                var result = await _context.LandDetails.Where(d => d.Deleted == false)
+                var result = await _context.LandDetails.Where(d => d.Deleted == false && d.UserId == userId)
                     .Include(p => p.PartitionLandDetails)
-                    .Include(s=> s.State).ToListAsync();
-                return result.Where(x => x.UserId == userId).ToList();
+                    .Include(s=> s.State)                    
+                    .ToListAsync();
+
+                var list = new List<LandDetail>();
+                foreach(var item in result)
+                {
+                    item.PartitionLandDetails = item.PartitionLandDetails.Where(x => x.Deleted == false).ToList();
+                    list.Add(item);
+                }
+                return list;
             }
             catch(Exception ex)
             {

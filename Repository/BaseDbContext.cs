@@ -28,9 +28,8 @@ namespace ThaniyasFarmerAppAPI.Repository
         public DbSet<Roles> Roles { get; set; }
         public DbSet<WebPages> WebPages { get; set; }
         public DbSet<RolePageAccess> RolePageAccesses { get; set; }
-        public DbSet<StateList> StateLists { get; set; }
-        public DbSet<Registration> Registrations { get; set; }
-        public DbSet<Login> Logins { get; set; }
+        public DbSet<StateList> StateLists { get; set; }        
+        public DbSet<GoogleRegister> GoogleRegisters { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -156,6 +155,23 @@ namespace ThaniyasFarmerAppAPI.Repository
                     Text = "Admin",
                     Deleted = false
                 });
+
+            modelBuilder.Entity<StateList>().HasData(
+               new StateList
+               {
+                   ID = 1,
+                   StateName = "Tamilnadu"
+               },
+               new StateList
+               {
+                   ID = 2,
+                   StateName = "Kerala"
+               },
+               new StateList
+               {
+                   ID = 3,
+                   StateName = "Karnataka"
+               });
 
             modelBuilder.Entity<WebPages>().HasData(
                new WebPages
