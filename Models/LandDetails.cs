@@ -29,6 +29,8 @@ namespace ThaniyasFarmerAppAPI.Models
         public string City { get; set; }
         [MaxLength(50)]
         public string PattaNumber { get; set; }
+        [MaxLength(50)]
+        public string SurveyNumber { get; set; }
         public int AreaSize { get; set; }
 
         public virtual ICollection<PartitionLandDetail> PartitionLandDetails { get; set; }

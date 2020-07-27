@@ -59,7 +59,8 @@ namespace ThaniyasFarmerAppAPI.Controllers
                 landDetailEditViewModel.City = LandDetail.City;
                 landDetailEditViewModel.Name = LandDetail.Name;
                 landDetailEditViewModel.ID = LandDetail.ID;
-                landDetailEditViewModel.PattaNumber = LandDetail.PattaNumber;               
+                landDetailEditViewModel.PattaNumber = LandDetail.PattaNumber;
+                landDetailEditViewModel.SurveyNumber = LandDetail.SurveyNumber;
                 landDetailEditViewModel.Village = LandDetail.Village;
                 landDetailEditViewModel.AreaSize = LandDetail.AreaSize;
                 landDetailEditViewModel.States = stateList;

@@ -26,6 +26,13 @@ namespace ThaniyasFarmerAppAPI.Models
         public int UserId { get; set; }                     
         
         public new bool Deleted { get; set; }
+
+        public virtual ICollection<Seeding> Seedings { get; set; }
+        public virtual ICollection<Plowing> Plowings { get; set; }
+        public virtual ICollection<PestControl> PestControls { get; set; }
+        public virtual ICollection<Harvestings> Harvestings { get; set; }
+        public virtual ICollection<Sale> Sales { get; set; }
+        public virtual ICollection<WeedRemove> WeedRemoves { get; set; }
         public PartitionLandDetail()
         {
             Deleted = false;

@@ -71,7 +71,7 @@ namespace ThaniyasFarmerAppAPI.Controllers
         [HttpGet("plowing-list")]
         public async Task<ActionResult<IEnumerable<Plowing>>> GetPlowingActivity(int userId)
         {
-            var list= await _context.Plowings.Where(d => d.Deleted == false && d.UserId == userId)
+            var list= await _context.Plowings.Where(d => d.Deleted == false && d.PartitionLandDetail.LandDetail.Deleted==false && d.UserId == userId)
                     .Include(p => p.PartitionLandDetail).ToListAsync();
             return list.Where(x => x.UserId == userId).ToList();
         }

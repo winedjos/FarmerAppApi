@@ -72,8 +72,8 @@ namespace ThaniyasFarmerAppAPI.Controllers
         [HttpGet("harvesting-list")]
         public async Task<ActionResult<IEnumerable<Harvestings>>> GetHarvestActivity(int userId)
         {
-            var list= await _context.Harvestings.Where(d => d.Deleted == false && d.UserId == userId)
-                    .Include(p => p.PartitionLandDetail).ToListAsync();
+            var list= await _context.Harvestings.Where(d => d.Deleted == false && d.PartitionLandDetail.LandDetail.Deleted == false &&  d.UserId == userId)
+                    .Include(p => p.PartitionLandDetail).Include(p => p.PartitionLandDetail.LandDetail).ToListAsync();
             return list.Where(x => x.UserId == userId).ToList();
         }
 
