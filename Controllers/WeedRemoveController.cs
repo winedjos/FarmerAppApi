@@ -38,6 +38,11 @@ namespace ThaniyasFarmerAppAPI.Controllers
             //return new JsonResult(weedRemove); 
             try
             {
+                //if (isExists(input.LabourCost) && input.ID == 0)
+                //{
+                //    return new JsonResult(new { status = true, ErrorMessage = "Already Exist" });
+                //}
+
                 WeedRemove weedRemove = null;
                 if (input != null)
                 {
@@ -121,6 +126,17 @@ namespace ThaniyasFarmerAppAPI.Controllers
 
             return weedremove;
         }
+
+        private bool isExists(int labourCost)
+        {
+            var result = _context.WeedRemove.Where(a => a.LabourCost.Equals(labourCost));
+            if (result.Any())
+            {
+                return true;
+            }
+            return false;
+        }
+
 
     }
 }

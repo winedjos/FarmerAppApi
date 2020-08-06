@@ -11,6 +11,7 @@ using ThaniyasFarmerAppAPI.Repository;
 using ThaniyasFarmerAppAPI.Filters;
 using Microsoft.AspNetCore.Cors;
 using Mapster;
+using System.Net.WebSockets;
 
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -38,6 +39,11 @@ namespace ThaniyasFarmerAppAPI.Controllers
             //return new JsonResult(plowing);
             try
             {
+                //if (isExists(input.TypeofPlowing) && input.ID == 0)
+                //{
+                //    return new JsonResult(new { status = true, ErrorMessage = "Already Exist" });
+                //}
+
                 Plowing plowing = null;
                 if (input != null)
                 {
@@ -114,6 +120,16 @@ namespace ThaniyasFarmerAppAPI.Controllers
             await _context.SaveChangesAsync();
 
             return plowing;
+        }
+
+        private bool isExists(string typeofPlowing)
+        {
+            var result = _context.Plowings.Where(a => a.TypeofPlowing.Equals(typeofPlowing));
+            if (result.Any())
+            {
+                return true;
+            }
+            return false;
         }
 
     }

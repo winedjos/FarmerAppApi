@@ -45,6 +45,11 @@ namespace ThaniyasFarmerAppAPI.Controllers
 
             try
             {
+                //if(isExists(input.NameofthePestSide)&& input.ID == 0)
+                //{
+                //    return new JsonResult(new { status = true, ErrorMessage = "Already Exist" });
+                //}
+
                 PestControl pestControl = null;
                 if (input != null)
                 {
@@ -117,6 +122,14 @@ namespace ThaniyasFarmerAppAPI.Controllers
             return pestControl;
         }
 
-
+        private bool isExists(string nameofPestSide)
+        {
+            var result = _context.PestControls.Where(a => a.NameofthePestSide.Equals(nameofPestSide));
+            if (result.Any())
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }

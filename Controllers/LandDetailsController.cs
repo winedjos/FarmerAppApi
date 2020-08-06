@@ -106,6 +106,12 @@ namespace ThaniyasFarmerAppAPI.Controllers
             
             try
             {
+                if (isExists(input.Name, input.UserId) && input.ID==0)
+                {
+                    return new JsonResult(new { status=true, ErrorMessage = "Already Exist" });
+
+                }
+
                 LandDetail landDetails = null;
                 if (input != null)
                 {
@@ -137,7 +143,7 @@ namespace ThaniyasFarmerAppAPI.Controllers
             }
 
         }
-        
+
         [HttpDelete("delete-LandDetail/{id}")]
         public async Task<ActionResult<LandDetail>> DeleteLandDetail(int id)   
         {
@@ -159,6 +165,16 @@ namespace ThaniyasFarmerAppAPI.Controllers
         private bool LandDetailExists(int id)
         {
             return _context.LandDetails.Any(e => e.ID == id);
+        }
+
+        private bool isExists(string landName, int userId)
+        {
+            var result = _context.LandDetails.Where(a => a.Name.Equals(landName) && a.UserId ==userId);
+            if (result.Any())
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

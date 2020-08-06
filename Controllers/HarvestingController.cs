@@ -34,6 +34,12 @@ namespace ThaniyasFarmerAppAPI.Controllers
 
             try
             {
+                //if (isExists(input.LabourCost)&&input.ID == 0)
+                //{
+                //    return new JsonResult(new { status = true, ErrorMessage = "Already Exist" });
+                //}
+
+
                 Harvestings harvest = null;
                 if (input != null)
                 {
@@ -113,6 +119,16 @@ namespace ThaniyasFarmerAppAPI.Controllers
             await _context.SaveChangesAsync();
 
             return harvest;
+        }
+
+        private bool isExists(int labourCost)
+        {
+            var result = _context.Harvestings.Where(a => a.LabourCost.Equals(labourCost));
+            if (result.Any())
+            {
+                return true;
+            }
+            return false;
         }
 
     }

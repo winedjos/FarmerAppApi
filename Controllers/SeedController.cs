@@ -38,6 +38,11 @@ namespace ThaniyasFarmerAppAPI.Controllers
 
             try
             {
+                //if (isExists(input.SeedName) && input.ID == 0)
+                //{
+                //    return new JsonResult(new { status = true, ErrorMessage = "Already Exist" });
+                //}
+
                Seeding seeding = null;
                 if (input != null)
                 {
@@ -116,6 +121,16 @@ namespace ThaniyasFarmerAppAPI.Controllers
             await _context.SaveChangesAsync();
 
             return seed;
+        }
+
+        private bool isExists(string seedName)
+        {
+            var result = _context.Seedings.Where(a => a.SeedName.Equals(seedName));
+            if (result.Any())
+            {
+                return true;
+            }
+            return false;
         }
 
     }

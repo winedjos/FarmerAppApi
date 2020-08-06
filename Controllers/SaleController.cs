@@ -115,5 +115,6 @@ namespace ThaniyasFarmerAppAPI.Controllers
             return sale;
         }
 
+
     }
 }
