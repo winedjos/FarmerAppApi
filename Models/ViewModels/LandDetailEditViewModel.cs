@@ -16,6 +16,7 @@ namespace ThaniyasFarmerAppAPI.Models.ViewModels
         public string PattaNumber { get; set; }
         public string SurveyNumber { get; set; }        
         public int AreaSize { get; set; }
+        public string Notes { get; set; }
         public int UserId { get; set; }
     }
 }

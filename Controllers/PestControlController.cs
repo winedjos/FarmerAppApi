@@ -96,6 +96,7 @@ namespace ThaniyasFarmerAppAPI.Controllers
                 pestControlEditViewModel.LabourCost = pestControl.LabourCost;
                 pestControlEditViewModel.NameofthePestSide = pestControl.NameofthePestSide;
                 pestControlEditViewModel.Purpose = pestControl.Purpose;
+                pestControlEditViewModel.Notes = pestControl.Notes;
                 //pestControlEditViewModel.PestControlDate = pestControl.PestControlDate;
                 pestControlEditViewModel.Cost = pestControl.Cost;
                 pestControlEditViewModel.LandDetailName = landDetails;

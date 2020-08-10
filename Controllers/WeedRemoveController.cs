@@ -99,6 +99,7 @@ namespace ThaniyasFarmerAppAPI.Controllers
                 weedRemoveEditViewModel.ID = WeedRemove.ID;
                 weedRemoveEditViewModel.LabourCost = WeedRemove.LabourCost;
                 weedRemoveEditViewModel.NoOfLabours = WeedRemove.NoOfLabours;
+                weedRemoveEditViewModel.Notes = WeedRemove.Notes;
                 //weedRemoveEditViewModel.Date = WeedRemove.Date;
                 weedRemoveEditViewModel.Cost = WeedRemove.Cost;
                 weedRemoveEditViewModel.LandDetailName = landDetails;

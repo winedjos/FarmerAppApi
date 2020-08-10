@@ -32,7 +32,9 @@ namespace ThaniyasFarmerAppAPI.Models
         [MaxLength(50)]
         public string SurveyNumber { get; set; }
         public int AreaSize { get; set; }
-
+        [MaxLength(50)]
+        public string Notes { get; set; }
+        [MaxLength(50)]
         public virtual ICollection<PartitionLandDetail> PartitionLandDetails { get; set; }
         // public string Unit { get; set; }
 

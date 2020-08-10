@@ -91,6 +91,7 @@ namespace ThaniyasFarmerAppAPI.Controllers
                 salesEditViewModel.ID = sale.ID;
                 salesEditViewModel.Price = sale.Price;
                 salesEditViewModel.Quantity = sale.Quantity;
+                salesEditViewModel.Notes = sale.Notes;
                 salesEditViewModel.LandDetailName = landDetails;
                 salesEditViewModel.PartLandDetailName = partLandDetails;
             }

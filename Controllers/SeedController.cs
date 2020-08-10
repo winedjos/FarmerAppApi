@@ -97,6 +97,7 @@ namespace ThaniyasFarmerAppAPI.Controllers
                 seedEditViewModel.NoOfLabours = Seed.NoOfLabours;
                 seedEditViewModel.Quantity = Seed.Quantity;
                 seedEditViewModel.SeedCost = Seed.SeedCost;
+                seedEditViewModel.Notes = Seed.Notes;
                 seedEditViewModel.SeedName = Seed.SeedName;
                 seedEditViewModel.LandDetailName = landDetails;
                 seedEditViewModel.PartLandDetailName = partLandDetails;

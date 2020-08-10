@@ -23,8 +23,8 @@ namespace ThaniyasFarmerAppAPI.Models
 
         public User User { get; set; }
         [ForeignKey("UserIDFK")]
-        public int UserId { get; set; }                     
-        
+        public int UserId { get; set; }      
+        public string Notes { get; set; }
         public new bool Deleted { get; set; }
 
         public virtual ICollection<Seeding> Seedings { get; set; }

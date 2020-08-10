@@ -95,6 +95,7 @@ namespace ThaniyasFarmerAppAPI.Controllers
                 partitionLandEditViewModel.ID = PartLand.ID;
                 partitionLandEditViewModel.AreaSize = PartLand.AreaSize;
                 partitionLandEditViewModel.LandDirection = PartLand.LandDirection;
+                partitionLandEditViewModel.Notes = PartLand.Notes;
                 partitionLandEditViewModel.LandDetailName = landDetails;
                 partitionLandEditViewModel.selectedLandDetailId = PartLand.LandDetail.ID;
                 //return NotFound();

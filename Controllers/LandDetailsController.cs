@@ -63,6 +63,7 @@ namespace ThaniyasFarmerAppAPI.Controllers
                 landDetailEditViewModel.SurveyNumber = LandDetail.SurveyNumber;
                 landDetailEditViewModel.Village = LandDetail.Village;
                 landDetailEditViewModel.AreaSize = LandDetail.AreaSize;
+                landDetailEditViewModel.Notes = LandDetail.Notes;
                 landDetailEditViewModel.States = stateList;
                 landDetailEditViewModel.selectedStateListId = LandDetail.State.ID;
             }

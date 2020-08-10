@@ -99,6 +99,7 @@ namespace ThaniyasFarmerAppAPI.Controllers
                 harvestingEditViewModel.NoOfLabours = Harvest.NoOfLabours;
                 harvestingEditViewModel.Cost = Harvest.Cost;
                 harvestingEditViewModel.Date = Harvest.Date;
+                harvestingEditViewModel.Notes = Harvest.Notes;
             }
             return harvestingEditViewModel;
         }

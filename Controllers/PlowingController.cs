@@ -97,6 +97,7 @@ namespace ThaniyasFarmerAppAPI.Controllers
                 plowingEditViewModel.PlowingExp = plowing.PlowingExp;
                 plowingEditViewModel.PlowingDate = plowing.PlowingDate;
                 plowingEditViewModel.TypeofPlowing = plowing.TypeofPlowing;
+                plowingEditViewModel.Notes = plowing.Notes;
                 plowingEditViewModel.LandDetailName = landDetails;
                 plowingEditViewModel.selectedPartLandDetailId = plowing.PartitionLandDetailId;
                 plowingEditViewModel.PartLandDetailName = partLandDetails;
