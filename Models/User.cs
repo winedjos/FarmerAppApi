@@ -29,7 +29,7 @@ namespace ThaniyasFarmerAppAPI.Models
 
         public int RoleID { get; set; }
         public bool IsFirstTimeLogin { get; set; }
-        public string Source { get; set; } // google/facebook/none
+        public string Source { get; set; } 
 
         public bool AcceptedTermsAndConditions { get; set; }
         public string ResetPasswordToken { get; set; }

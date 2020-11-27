@@ -17,11 +17,6 @@ namespace ThaniyasFarmerAppAPI.Models
         public string Email { get; set; }
         public string Source { get; set; }
         public int RoleID { get; set; }
-       // public string JoinedDate { get; set; }
-        //public bool IsFirstTimeLogin { get; set; }
-        //public bool AcceptedTermsAndConditions { get; set; }
-        //public List<WebPages> WebPages { get; set; }
-        //public bool Deleted { get; set; }
     }
 
     public class LoginResults

@@ -13,7 +13,6 @@ using Microsoft.AspNetCore.Cors;
 using Mapster;
 
 
-// For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace ThaniyasFarmerAppAPI.Controllers
 {
@@ -31,17 +30,10 @@ namespace ThaniyasFarmerAppAPI.Controllers
         [HttpPost("add-WeedRemove")]
         public async Task<ActionResult<WeedRemove>> AddWeedRemove([FromBody]WeedRemoveViewModel input)
         {
-            //var weedRemove = input.Adapt<WeedRemove>();
-            //_context.WeedRemove.Add(weedRemove);
-            //await _context.SaveChangesAsync();
-
-            //return new JsonResult(weedRemove); 
+           
             try
             {
-                //if (isExists(input.LabourCost) && input.ID == 0)
-                //{
-                //    return new JsonResult(new { status = true, ErrorMessage = "Already Exist" });
-                //}
+                
 
                 WeedRemove weedRemove = null;
                 if (input != null)
@@ -53,18 +45,17 @@ namespace ThaniyasFarmerAppAPI.Controllers
                     var PartLandDetails = _context.PartitionLandDetails.Where(p => p.ID == input.PartitionLandDetailId).FirstOrDefault();
                     if (PartLandDetails == null) return new JsonResult(new { ErrorMessage = "The given land details id not found." });
                     weedRemove.PartitionLandDetail = PartLandDetails;
-                    //Deciding whether the action is Add or Update
-                    if (input.ID <= 0) //Add
+                   
+                    if (input.ID <= 0) 
                     {
                         _context.WeedRemove.Add(weedRemove);
                     }
                     else
-                    { //Update
+                    { 
                         _context.WeedRemove.Update(weedRemove);
                     }
                 }
-                await _context.SaveChangesAsync();
-                //var result = GetWeedRemove(weedRemove.ID);
+                await _context.SaveChangesAsync();                
                 return new JsonResult(weedRemove);
             }
             catch (Exception _ex)
@@ -99,8 +90,7 @@ namespace ThaniyasFarmerAppAPI.Controllers
                 weedRemoveEditViewModel.ID = WeedRemove.ID;
                 weedRemoveEditViewModel.LabourCost = WeedRemove.LabourCost;
                 weedRemoveEditViewModel.NoOfLabours = WeedRemove.NoOfLabours;
-                weedRemoveEditViewModel.Notes = WeedRemove.Notes;
-                //weedRemoveEditViewModel.Date = WeedRemove.Date;
+                weedRemoveEditViewModel.Notes = WeedRemove.Notes;               
                 weedRemoveEditViewModel.Cost = WeedRemove.Cost;
                 weedRemoveEditViewModel.LandDetailName = landDetails;
                 weedRemoveEditViewModel.PartLandDetailName = partLandDetails;

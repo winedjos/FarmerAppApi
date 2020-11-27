@@ -8,7 +8,7 @@ namespace ThaniyasFarmerAppAPI.Models.ViewModels
 {
     public class SeedingViewModel
     {
-        // public int LandDetailsId { get; set; }
+        
         public int PartitionLandDetailId { get; set; }
         public int UserId { get; set; }
         public int ID { get; set; }

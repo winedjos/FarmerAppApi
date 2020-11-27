@@ -123,19 +123,19 @@ namespace ThaniyasFarmerAppAPI.Controllers
                     if (user == null) return new JsonResult(new { ErrorMessage = "The given user id not found." });
                     landDetails.User = user;
 
-                    //Setting the state List value to the Land detail object
+                   
                     landDetails.State = stateList;                    
                     if (input.ID <= 0) 
                     {
                         _context.LandDetails.Add(landDetails);
                     }
                     else
-                    { //Update
+                    { 
                         _context.LandDetails.Update(landDetails);
                     }
                 }
                 await _context.SaveChangesAsync();
-                //var result = GetLandDetail(landDetails.ID);
+               
                 return new JsonResult(landDetails);
             }
             catch (Exception _ex)

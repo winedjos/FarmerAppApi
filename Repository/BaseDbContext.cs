@@ -33,14 +33,7 @@ namespace ThaniyasFarmerAppAPI.Repository
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //modelBuilder.Entity<LandDetail>()
-            //    .HasMany(e => e.PartitionLandDetails)
-            //    .WithOne(c => c.LandDetail);
-
-            //modelBuilder.Entity<PartitionLandDetail>()
-            //    .HasOne(e => e.LandDetail)
-            //    .WithMany(c => c.PartitionLandDetails);         
-
+           
             foreach (var relationship in modelBuilder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))
             {
                 relationship.DeleteBehavior = DeleteBehavior.Restrict;
@@ -53,9 +46,7 @@ namespace ThaniyasFarmerAppAPI.Repository
                     Email = "winedjos@gmail.com",
                     Password = Helpers.StringCipher.Encrypt("Password*123"),
                     DateAdded = DateTime.UtcNow,
-                    DateModified=DateTime.UtcNow,
-                    //RoleID = 1,
-                   // AcceptedTermsAndConditions = true,
+                    DateModified=DateTime.UtcNow,                   
                     IsFirstTimeLogin = true
                 },
                 new User

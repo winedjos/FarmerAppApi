@@ -36,8 +36,7 @@ namespace ThaniyasFarmerAppAPI.Models
         public string Notes { get; set; }
         
         public virtual ICollection<PartitionLandDetail> PartitionLandDetails { get; set; }
-        // public string Unit { get; set; }
-
+        
         public LandDetail()
         {
             DateAdded = DateTime.UtcNow;

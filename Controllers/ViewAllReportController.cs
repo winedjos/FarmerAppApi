@@ -26,13 +26,12 @@ namespace ThaniyasFarmerAppAPI.Controllers
         [HttpGet("get-viewAllreports")]
         public async Task<ActionResult<IEnumerable<ViewAllReportViewModel>>> GetViewReport()
         {
-            //List<LandDetail> landDetailViewModel = new List<LandDetail>();
+            
             List<ViewAllReportViewModel> viewAllReportViewModel = new List<ViewAllReportViewModel>();
-            List<LandDetail> landDetailViewModel = await _context.LandDetails.ToListAsync();
-            // List<PartitionLandDetail> partitionLandViewModel = await _context.PartitionLandDetails.Where(p => p.LandDetailId == id).ToListAsync();
+            List<LandDetail> landDetailViewModel = await _context.LandDetails.ToListAsync();            
             float sale = 0;
             float Total = 0;
-            List<PartitionLandDetail> partitionLandViewModel = null; // await _context.PartitionLandDetails.ToListAsync();
+            List<PartitionLandDetail> partitionLandViewModel = null; 
             foreach (var land in landDetailViewModel) 
             {
                 partitionLandViewModel = await _context.PartitionLandDetails.Where(p=>p.LandDetailId == land.ID).ToListAsync();
@@ -46,7 +45,7 @@ namespace ThaniyasFarmerAppAPI.Controllers
                     Total = Total + _context.Plowings.Where(m => m.PartitionLandDetailId.Equals(partition.ID)).Sum(m => m.PlowingExp);
 
                     sale = _context.Sales.Where(p => p.PartitionLandDetailId == partition.ID).Sum(m => m.Price);
-                   // var viewall = await _context.Plowings.GroupBy(p => p.PartitionLandDetailId).ToListAsync();
+                  
 
                     viewAllReportViewModel.Add(new ViewAllReportViewModel
                     {

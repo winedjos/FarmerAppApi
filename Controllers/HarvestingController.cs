@@ -12,7 +12,7 @@ using ThaniyasFarmerAppAPI.Filters;
 using Microsoft.AspNetCore.Cors;
 using Mapster;
 
-// For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+
 
 namespace ThaniyasFarmerAppAPI.Controllers
 {
@@ -34,10 +34,7 @@ namespace ThaniyasFarmerAppAPI.Controllers
 
             try
             {
-                //if (isExists(input.LabourCost)&&input.ID == 0)
-                //{
-                //    return new JsonResult(new { status = true, ErrorMessage = "Already Exist" });
-                //}
+             
 
 
                 Harvestings harvest = null;
@@ -51,21 +48,18 @@ namespace ThaniyasFarmerAppAPI.Controllers
                     if (PartLandDetails == null) return new JsonResult(new { ErrorMessage = "The given land details id not found." });
                     harvest.PartitionLandDetail = PartLandDetails;
 
-                    //Deciding whether the action is Add or Update
-                    if (input.ID <= 0) //Add
+                    
+                    if (input.ID <= 0) 
                     {
                         _context.Harvestings.Add(harvest);
                     }
                     else
-                    { //Update
+                    { 
                         _context.Harvestings.Update(harvest);
                     }
 
                 }
-                await _context.SaveChangesAsync();
-
-                //return the getharverst method value
-                //var result = GetHarvest(harvest.ID);
+                await _context.SaveChangesAsync();               
 
                 return new JsonResult(harvest);
             }

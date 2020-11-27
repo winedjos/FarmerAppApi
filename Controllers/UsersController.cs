@@ -58,44 +58,7 @@ namespace ThaniyasFarmerAppAPI.Controllers
 
             return user;
         }
-
-        //[HttpPut("update-user/{id}")]
-        //public async Task<ActionResult<User>> UpdateUser(int id, UserViewModel input)
-        //{
-        //    if (id != input.ID)
-        //    {
-        //        return BadRequest();
-        //    }
-        //    var existData= _context.Users.Where(x=>x.ID==id).Select(x=>x.Password).FirstOrDefault();
-        //    if (existData == null)
-        //    {
-        //        return BadRequest();
-        //    }
-        //    var user = input.Adapt<User>();
-        //    try
-        //    {
-        //        user.Password = existData;
-        //        _context.Entry(user).State = EntityState.Modified;
-        //        await _context.SaveChangesAsync();
-        //    }
-        //    catch (DbUpdateConcurrencyException)
-        //    {
-        //        if (!UserExists(id))
-        //        {
-        //            return NotFound();
-        //        }
-        //        else
-        //        {
-        //            throw;
-        //        }
-        //    }
-        //    catch(Exception ex)
-        //    {
-        //        throw ex;
-        //    }
-
-        //    return user;
-        //}
+       
 
         [HttpPost("change-password")]
         public async Task<ActionResult<ChangePasswordResult>> ChangePassword(ChangePasswordInput input)
@@ -174,37 +137,6 @@ namespace ThaniyasFarmerAppAPI.Controllers
             return CreatedAtAction("GetUser", new { id = user.ID }, user);
         }
 
-        //[HttpDelete("delete-user/{id}")]
-        //public async Task<ActionResult<User>> DeleteUser(int id)
-        //{
-        //    var user = await _context.Users.FindAsync(id);
-        //    if (user == null)
-        //    {
-        //        return NotFound();
-        //    }
-        //    try
-        //    {
-        //        user.Deleted = true;
-        //        _context.Entry(user).State = EntityState.Modified;
-        //        await _context.SaveChangesAsync();
-        //    }
-        //    catch (DbUpdateConcurrencyException)
-        //    {
-        //        if (!UserExists(id))
-        //        {
-        //            return NotFound();
-        //        }
-        //        else
-        //        {
-        //            throw;
-        //        }
-        //    }
-        //    return user;
-        //}
-
-        //private bool UserExists(int id)
-        //{
-        //    return _context.Users.Any(e => e.ID == id);
-        //}
+       
     }
 }

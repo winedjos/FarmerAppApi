@@ -12,7 +12,6 @@ using ThaniyasFarmerAppAPI.Filters;
 using Microsoft.AspNetCore.Cors;
 using Mapster;
 
-// For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace ThaniyasFarmerAppAPI.Controllers
 {
@@ -38,26 +37,23 @@ namespace ThaniyasFarmerAppAPI.Controllers
                 {
                     sale = input.Adapt<Sale>();                    
                     var PartLandDetails = _context.PartitionLandDetails.Where(p => p.ID == input.PartitionLandDetailId).FirstOrDefault();
-                    if (PartLandDetails == null) return new JsonResult(new { ErrorMessage = "The given land details id not found." });
-
-                    //Setting the land detail value to the Partition Land detail object                    
+                    if (PartLandDetails == null) return new JsonResult(new { ErrorMessage = "The given land details id not found." });                                 
                     sale.PartitionLandDetail = PartLandDetails;
                     var user = _context.Users.Where(s => s.ID == input.UserId).FirstOrDefault();
                     if (user == null) return new JsonResult(new { ErrorMessage = "The given user id not found." });
                     sale.User = user;
-
-                    //Deciding whether the action is Add or Update
-                    if (input.ID <= 0) //Add
+                    
+                    if (input.ID <= 0) 
                     {
                         _context.Sales.Add(sale);
                     }
                     else
-                    { //Update
+                    { 
                         _context.Sales.Update(sale);
                     }
                 }
                 await _context.SaveChangesAsync();
-                //var result = GetSale(sale.ID);
+                
                 return new JsonResult(sale);
             }
             catch (Exception _ex)
@@ -86,8 +82,7 @@ namespace ThaniyasFarmerAppAPI.Controllers
                 var partLandDetails = _context.PartitionLandDetails.ToList();
                 salesEditViewModel = new SalesEditViewModel();
                 salesEditViewModel.BuyerMobileNumber = sale.BuyerMobileNumber;
-                salesEditViewModel.BuyerName = sale.BuyerName;
-                //salesEditViewModel.SaleDate = sale.SaleDate;
+                salesEditViewModel.BuyerName = sale.BuyerName;               
                 salesEditViewModel.ID = sale.ID;
                 salesEditViewModel.Price = sale.Price;
                 salesEditViewModel.Quantity = sale.Quantity;

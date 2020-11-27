@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 using ThaniyasFarmerAppAPI.Services.Interfaces;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
-// For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace ThaniyasFarmerAppAPI.Controllers
 {

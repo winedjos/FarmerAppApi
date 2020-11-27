@@ -14,7 +14,6 @@ using Mapster;
 using System.Net.WebSockets;
 
 
-// For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace ThaniyasFarmerAppAPI.Controllers
 {
@@ -33,16 +32,10 @@ namespace ThaniyasFarmerAppAPI.Controllers
         [HttpPost("add-Plowing")]
         public async Task<ActionResult<Plowing>> AddPlowing([FromBody]PlowingViewModel input)
         {
-            //_context.Plowings.Add(plowing);
-            //await _context.SaveChangesAsync();
-
-            //return new JsonResult(plowing);
+            
             try
             {
-                //if (isExists(input.TypeofPlowing) && input.ID == 0)
-                //{
-                //    return new JsonResult(new { status = true, ErrorMessage = "Already Exist" });
-                //}
+               
 
                 Plowing plowing = null;
                 if (input != null)
@@ -54,18 +47,18 @@ namespace ThaniyasFarmerAppAPI.Controllers
                     var PartLandDetails = _context.PartitionLandDetails.Where(p => p.ID == input.PartitionLandDetailId).FirstOrDefault();
                     if (PartLandDetails == null) return new JsonResult(new { ErrorMessage = "The given land details id not found." });
                     plowing.PartitionLandDetail = PartLandDetails;
-                    //Deciding whether the action is Add or Update
-                    if (input.ID <= 0) //Add
+                    
+                    if (input.ID <= 0) 
                     {
                         _context.Plowings.Add(plowing);
                     }
                     else
-                    { //Update
+                    { 
                         _context.Plowings.Update(plowing);
                     }
                 }
                 await _context.SaveChangesAsync();
-                //var result = GetPlowing(plowing.ID);
+               
                 return new JsonResult(plowing);
             }
             catch (Exception _ex)

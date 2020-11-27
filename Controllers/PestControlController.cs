@@ -9,7 +9,6 @@ using ThaniyasFarmerAppAPI.Models.ViewModels;
 using ThaniyasFarmerAppAPI.Repository;
 using Mapster;
 
-// For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace ThaniyasFarmerAppAPI.Controllers
 {
@@ -38,17 +37,11 @@ namespace ThaniyasFarmerAppAPI.Controllers
         [Route("add-PestControl")]
         public async Task<ActionResult<PestControl>> AddPestControl([FromBody]PestControlViewModel input)
         {
-            //_context.PestControls.Add(pestControl);
-            //await _context.SaveChangesAsync();
-
-            //return new JsonResult(pestControl);
+           
 
             try
             {
-                //if(isExists(input.NameofthePestSide)&& input.ID == 0)
-                //{
-                //    return new JsonResult(new { status = true, ErrorMessage = "Already Exist" });
-                //}
+                
 
                 PestControl pestControl = null;
                 if (input != null)
@@ -61,18 +54,18 @@ namespace ThaniyasFarmerAppAPI.Controllers
                     var PartLandDetails = _context.PartitionLandDetails.Where(p => p.ID == input.PartitionLandDetailId).FirstOrDefault();
                     if (PartLandDetails == null) return new JsonResult(new { ErrorMessage = "The given land details id not found." });
                     pestControl.PartitionLandDetail = PartLandDetails;
-                    //Deciding whether the action is Add or Update
-                    if (input.ID <= 0) //Add
+                    
+                    if (input.ID <= 0) 
                     {
                         _context.PestControls.Add(pestControl);
                     }
                     else
-                    { //Update
+                    {
                         _context.PestControls.Update(pestControl);
                     }
                 }
                 await _context.SaveChangesAsync();
-                //var result = GetPestControl(pestControl.ID);
+                
                 return new JsonResult(pestControl);
             }
             catch (Exception _ex)
@@ -96,8 +89,7 @@ namespace ThaniyasFarmerAppAPI.Controllers
                 pestControlEditViewModel.LabourCost = pestControl.LabourCost;
                 pestControlEditViewModel.NameofthePestSide = pestControl.NameofthePestSide;
                 pestControlEditViewModel.Purpose = pestControl.Purpose;
-                pestControlEditViewModel.Notes = pestControl.Notes;
-                //pestControlEditViewModel.PestControlDate = pestControl.PestControlDate;
+                pestControlEditViewModel.Notes = pestControl.Notes;               
                 pestControlEditViewModel.Cost = pestControl.Cost;
                 pestControlEditViewModel.LandDetailName = landDetails;
                 pestControlEditViewModel.PartLandDetailName = partLandDetails;

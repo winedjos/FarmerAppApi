@@ -104,7 +104,7 @@ namespace ThaniyasFarmerAppAPI
             app.UseMvc();
 
             //app.UseCors();
-            
+     
         }
     }
 }

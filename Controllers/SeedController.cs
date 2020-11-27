@@ -12,7 +12,6 @@ using ThaniyasFarmerAppAPI.Filters;
 using Microsoft.AspNetCore.Cors;
 using Mapster;
 
-// For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace ThaniyasFarmerAppAPI.Controllers
 {
@@ -31,17 +30,10 @@ namespace ThaniyasFarmerAppAPI.Controllers
         [HttpPost("add-Seed")]
         public async Task<ActionResult<Seeding>> AddSeeding([FromBody]SeedingViewModel input)
         {
-            //_context.Seedings.Add(Seeding);
-            //await _context.SaveChangesAsync();
-
-            //return new JsonResult(Seeding); 
-
+           
             try
             {
-                //if (isExists(input.SeedName) && input.ID == 0)
-                //{
-                //    return new JsonResult(new { status = true, ErrorMessage = "Already Exist" });
-                //}
+                
 
                Seeding seeding = null;
                 if (input != null)
@@ -64,7 +56,7 @@ namespace ThaniyasFarmerAppAPI.Controllers
                     }
                 }
                 await _context.SaveChangesAsync();
-                //var result = GetSeed(seeding.ID);
+               
                 return new JsonResult(seeding);
             }
             catch (Exception _ex)

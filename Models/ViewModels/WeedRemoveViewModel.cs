@@ -7,9 +7,8 @@ using System.ComponentModel.DataAnnotations;
 namespace ThaniyasFarmerAppAPI.Models.ViewModels
 {
     public class WeedRemoveViewModel
-    {
-       
-       // public int LandDetailsId { get; set; }
+    {      
+      
         public int PartitionLandDetailId { get; set; }
         public int UserId { get; set; }
         public int ID { get; set; }
